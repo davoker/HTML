@@ -1,5 +1,5 @@
 /* Box-sizing hace que el padding y el borde estén incluidos dentro del ancho del elemento */
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -10,12 +10,12 @@ ahora
 1.5rem = 30px
 2rem = 40px */
 
-html{
+html {
     font-size: 16px;
 }
 
 /*BOODY Estilos generales de toda la página*/
-body{
+body {
     /*Tipo de letra que se utiliza en toda la web*/
     font-family: Arial, Helvetica, sans-serif;
     /* Elimina el margen que pone el navegador por defecto */
@@ -25,9 +25,9 @@ body{
 }
 
 /* HEADER Estilos para la cabecera de la página */
-header{
+header {
     background-color: rgb(89, 248, 110);
-    color:rgb(255, 48, 48);
+    color: rgb(255, 48, 48);
     text-align: center;
     /* 1rem = 20px */
     padding: 1rem;
@@ -37,7 +37,7 @@ header{
 }
 
 /* Estilos para el menú de navegación */
-nav{
+nav {
     background-color: #34495e;
     text-align: center;
     /* 1rem = 20px */
@@ -46,7 +46,7 @@ nav{
 }
 
 /* Estilos para los enlaces del menú de navegación */
-nav a{
+nav a {
     text-decoration: none;
     color: aliceblue;
     /* 0.75rem = 15px */
@@ -54,23 +54,23 @@ nav a{
 }
 
 /* Main estilos para el contenedor principal */
-main{
+main {
     width: 80%;
     /* 1rem = 20px */
     margin: 1rem auto;
-/* Ocupa como mínimo el 50% de la pantalla */
-min-height: 50vh;
+    /* Ocupa como mínimo el 50% de la pantalla */
+    min-height: 50vh;
 }
 
 /* SECTION estilos para contenedor que agrupa contenido relacionado */
-section{
+section {
     background-color: white;
     padding: 1rem;
     margin-bottom: 1rem;
 }
 
 /* ARTICLE estilos para bloque independiente de contenido */
-article{
+article {
     background-color: rgb(255, 255, 255);
     padding: 0.75rem;
     margin-bottom: 0.75rem;
@@ -79,25 +79,24 @@ article{
 }
 
 /* ASIDE estilos para la información secundaria */
-aside{
+aside {
     background-color: rgb(255, 255, 255);
     padding: 1rem;
     margin-bottom: 1rem;
 }
 
 /* Enlaces dentro del aside */
-aside a{
+aside a {
     text-decoration: none;
     color: rgb(2, 175, 25);
     font-size: 1rem;
 }
 
 /* FOOTER estilos para el pie de página */
-footer{
+footer {
     background-color: #34495e;
     color: aliceblue;
     text-align: center;
     padding: 0.75rem;
     min-height: 10vh;
 }
-
