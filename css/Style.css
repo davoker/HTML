@@ -1,0 +1,9 @@
+/*BOODY Estilos generales de toda la página*/
+body{
+    /*Tipo de letra que se utiliza en toda la web*/
+    font-family: Arial, Helvetica, sans-serif;
+    /* Elimina el margen que pone el navegador por defecto */
+    margin: 0;
+    /* Color de fondo de la página */
+    background-color: rgb(126, 255, 212);
+}
