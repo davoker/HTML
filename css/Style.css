@@ -1,3 +1,19 @@
+/* Box-sizing hace que el padding y el borde estén incluidos dentro del ancho del elemento */
+*{
+    box-sizing: border-box;
+}
+
+/* Definimos el tamaño base de la fuente 
+ahora
+1rem = 20px
+0.5rem = 10px
+1.5rem = 30px
+2rem = 40px */
+
+html{
+    font-size: 16px;
+}
+
 /*BOODY Estilos generales de toda la página*/
 body{
     /*Tipo de letra que se utiliza en toda la web*/
@@ -6,4 +22,32 @@ body{
     margin: 0;
     /* Color de fondo de la página */
     background-color: rgb(105, 255, 255);
+}
+
+/* HEADER Estilos para la cabecera de la página */
+header{
+    background-color: rgb(89, 248, 110);
+    color:rgb(255, 48, 48);
+    text-align: center;
+    /* 1rem = 20px */
+    padding: 1rem;
+    /* 20vh = 20% de la altura de la pantalla */
+    min-height: 100px;
+
+}
+
+/* Estilos para el menú de navegación */
+nav{
+    background-color: #34495e;
+    text-align: center;
+    /* 1rem = 20px */
+    font-size: 1.rem;
+}
+
+/* Estilos para los enlaces del menú de navegación */
+nav a{
+    text-decoration: none;
+    color: aliceblue;
+    /* 0.75rem = 15px */
+    margin: 2rem;
 }
