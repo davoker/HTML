@@ -41,7 +41,8 @@ nav{
     background-color: #34495e;
     text-align: center;
     /* 1rem = 20px */
-    font-size: 1.rem;
+    margin: -1rem;
+    font-size: 1rem;
 }
 
 /* Estilos para los enlaces del menú de navegación */
@@ -51,3 +52,52 @@ nav a{
     /* 0.75rem = 15px */
     margin: 2rem;
 }
+
+/* Main estilos para el contenedor principal */
+main{
+    width: 80%;
+    /* 1rem = 20px */
+    margin: 1rem auto;
+/* Ocupa como mínimo el 50% de la pantalla */
+min-height: 50vh;
+}
+
+/* SECTION estilos para contenedor que agrupa contenido relacionado */
+section{
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* ARTICLE estilos para bloque independiente de contenido */
+article{
+    background-color: rgb(255, 255, 255);
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    /* Aquí usamos px porque queremos un grosor fijo para el borde */
+    border-left: 5px solid rgb(110, 51, 250);
+}
+
+/* ASIDE estilos para la información secundaria */
+aside{
+    background-color: rgb(255, 255, 255);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Enlaces dentro del aside */
+aside a{
+    text-decoration: none;
+    color: rgb(2, 175, 25);
+    font-size: 1rem;
+}
+
+/* FOOTER estilos para el pie de página */
+footer{
+    background-color: #34495e;
+    color: aliceblue;
+    text-align: center;
+    padding: 0.75rem;
+    min-height: 10vh;
+}
+
