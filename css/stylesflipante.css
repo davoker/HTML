@@ -24,6 +24,7 @@ html {
     font-size: 20px;
 }
 
+/* Estilos para el cuerpo de la página */
 body {
     font-family: 'Times New Roman', Times, serif;
     margin: 0;
@@ -32,7 +33,7 @@ body {
 
 /* Contenedor de main y aside */
 .container {
-    width: 100%;
+    width: 90%;
     margin: auto;
 }
 
@@ -55,15 +56,12 @@ nav {
     background-color: rgb(189, 127, 255); /* Color de fondo para distinguir */
 }
 
+/* Estilos para los enlaces dentro del nav */
 nav a {
     text-decoration: none;
     color: #000; /* Color de los enlaces */
     margin: 3rem; /* Espaciado entre enlaces */
     font-size: 1.2rem; /* Tamaño de fuente para los enlaces */
-}
-
-.subrayado {
-    text-decoration: underline;
 }
 
 /* Estilos para el main y aside */
@@ -77,11 +75,13 @@ main {
     background-color: rgb(105, 255, 97); /* Color de fondo para distinguir */
 }
 
+/* Estilos para las imágenes dentro de main */
 main img {
     max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
     height: 250px; /* Establece la altura de la imagen */
 }
 
+/* Estilos para el aside */
 aside {
     border: 3px solid #000; /* Borde para distinguir el tamaño */
     padding: 0.1rem; /* Usando rem para el padding */
@@ -91,10 +91,12 @@ aside {
     text-align: center;
 }
 
+/* Estilos para el primer contenido secundario */
 #Secundario {
     background-color: rgb(255, 255, 97); /* Color de fondo para distinguir */
 }
 
+/* Estilos para el segundo contenido secundario */
 #Secundario2 {
     width: 100%;
     float: none;
@@ -102,6 +104,7 @@ aside {
     background-color: rgb(255, 166, 166);
 }
 
+/* Estilos para el nav dentro de #Secundario2 */
 #Secundario2 nav {
     text-align: center;
     border: 0;
@@ -111,23 +114,23 @@ aside {
     background-color: rgb(255, 166, 166);
 }
 
+/* Estilos para los enlaces dentro de #Secundario2 */
 #Secundario2 nav a {
     display: block;
     margin: 0.5rem 0;
-    text-align: center; /* Centrar el texto */
 }
 
+/* Estilos para la lista dentro de aside */
 aside ul {
     border: 3px solid #000; /* Borde para distinguir el tamaño */
     padding: 3.5rem; /* Usando rem para el padding */
-    width: 100%; /* Usando porcentaje para el ancho */
-    float: none;
     clear: both;
     min-height: 200px; /* Altura mínima */
     font-size: 1.2rem; /* Tamaño de fuente para los enlaces */
     background-color: rgb(255, 121, 121); /* Color de fondo para distinguir */
 }
 
+/* Estilos para las imágenes dentro de aside */
 aside img {
     max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
     height: 230px; /* Establece la altura de la imagen */
