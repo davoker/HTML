@@ -1,0 +1,64 @@
+<!-- EJERCICIO: ESTRUCTURA BÁSICA DE UNA PÁGINA WEB:
+
+Crea una página web utilizando las principales etiquetas semánticas de HTML5. La página deberá tener la siguiente estructura:
+
+1. HEADER - Será la cabecera de la página. - Ocupará el 100% del ancho. - Tendrá una altura de 150px.
+2. NAV - Estará situado debajo del HEADER. - Ocupará el 100% del ancho. - Tendrá una altura de 70px. - Contendrá cuatro enlaces: Inicio, Productos, Nosotros y Contacto.
+3. CONTENEDOR PRINCIPAL - Tendrá un ancho del 90%. - Estará centrado horizontalmente. - Dentro estarán MAIN y ASIDE.
+4. MAIN - Contendrá el contenido principal. - Ocupará el 70% del contenedor. - Tendrá una altura de 400px.
+5. ASIDE - Contendrá información secundaria. - Ocupará el 30% del contenedor. - Tendrá una altura de 400px.
+6. FOOTER - Será el pie de página. - Ocupará el 100% del ancho. - Tendrá una altura de 120px. -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Si me ves, estás hackeado</title>
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="../css/stylesflipante2.css">
+
+    <header>
+        <h1>Hola mundo</h1>
+        <p>100% de ancho 150px de alto</p>
+    </header>
+
+<!-- Menú de navegación -->
+    <nav>
+        <ul>
+            <b><a href="#">Inicio</a></b>
+            <b><a href="#">Productos</a></b>
+            <b><a href="#">Nosotros</a></b>
+            <b><a href="#">Contacto</a></b>
+        </ul>
+    </nav>
+
+<!-- Contenedor de main y aside -->
+<div class="container">
+    <!-- Contenedor principal -->
+    <main>
+            <h2>Main</h2>
+            <p>Esta zona contiene el contenido principal de la página.</p>
+            <p>Tiene un ancho del 70%</p>
+            <p>Tiene un alto de 400px</p>
+    </main>
+
+    <!-- Contenedor secundario -->
+    <aside>
+            <h2>Aside</h2>
+            <p>Esta zona contiene información secundaria de la página web.</p>
+            <p>Tiene un ancho del 30%</p>
+            <p>Tiene un alto de 400px</p>
+    </aside>
+
+</div>
+
+<footer>
+    <h2>Footer</h2>
+    <p>100% de ancho - 120px de alto.</p>
+</footer>
+
+
+</body>
+
+</html>

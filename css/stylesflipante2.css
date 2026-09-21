@@ -1,0 +1,76 @@
+/* REQUISITOS CSS: - Utilizar un archivo CSS externo.
+- Establecer en HTML un font-size de 20px.
+- Utilizar box-sizing: border-box. 
+- Utilizar px, rem y porcentajes.
+- Centrar el contenedor mediante margin: auto.
+- Añadir un borde a cada zona para poder distinguir claramente su tamaño.
+- MAIN y ASIDE deberán aparecer uno al lado del otro. */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 20px;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    background-color: rgb(255, 196, 242);
+}
+
+header {
+    border: 1px solid #000; /* Borde para distinguir el tamaño */
+    padding: 1rem; /* Usando rem para el padding */
+    width: 100%;
+    text-align: center; /* Centrar el texto */
+    min-height: 150px; /* Altura mínima */
+    background-color: rgb(105, 255, 255); /* Color de fondo para distinguir */
+}
+
+nav {
+    border: 1px solid #000; /* Borde para distinguir el tamaño */
+    padding: 1rem; /* Usando rem para el padding */
+    margin-bottom: 1rem; /* Espacio inferior */
+    min-height: 70px; /* Altura mínima */
+    text-align: center;
+    background-color: rgb(189, 127, 255); /* Color de fondo para distinguir */
+}
+
+nav a {
+    text-decoration: none;
+    color: #000; /* Color de los enlaces */
+    margin: 3rem; /* Espaciado entre enlaces */
+    font-size: 1.2rem; /* Tamaño de fuente para los enlaces */
+}
+
+main {
+    border: 3px solid #000; /* Borde para distinguir el tamaño */
+    padding-top: 3rem; /* Usando rem para el padding */
+    width: 70%; /* Usando porcentaje para el ancho */
+    float: left; /* Colocar a la izquierda */
+    min-height: 400px; /* Altura mínima */
+    text-align: center;
+    background-color: rgb(105, 255, 97); /* Color de fondo para distinguir */
+}
+
+aside {
+    border: 3px solid #000; /* Borde para distinguir el tamaño */
+    padding-top: 3rem; /* Usando rem para el padding */
+    width: 30%; /* Usando porcentaje para el ancho */
+    float: right; /* Colocar a la derecha */
+    min-height: 400px; /* Altura mínima */
+    text-align: center;
+    background-color: rgb(255, 167, 95); /* Color de fondo para distinguir */
+}
+
+footer {
+    width: 100%;
+    min-height: 120px; /* Altura mínima */
+    border: 1px solid #000; /* Borde para distinguir el tamaño */
+    padding: 1rem; /* Usando rem para el padding */
+    text-align: center; /* Centrar el texto */
+    float: left;
+    background-color: rgb(105, 255, 255); /* Color de fondo para distinguir */
+}
