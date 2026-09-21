@@ -10,61 +10,86 @@
     box-sizing: border-box;
 }
 
+/* Configuración del tamaño de fuente */
 html {
     font-size: 20px;
 }
 
+/* Configuración del cuerpo */
 body {
     font-family: 'Times New Roman', Times, serif;
     margin: 0;
     background-color: rgb(255, 196, 242);
 }
 
+/* Configuración del encabezado */
 header {
     border: 1px solid #000; /* Borde para distinguir el tamaño */
     padding: 1rem; /* Usando rem para el padding */
     width: 100%;
     text-align: center; /* Centrar el texto */
-    min-height: 150px; /* Altura mínima */
+    height: 150px; /* Altura */
     background-color: rgb(105, 255, 255); /* Color de fondo para distinguir */
 }
 
+/* Configuración de la navegación */
 nav {
-    border: 1px solid #000; /* Borde para distinguir el tamaño */
-    padding: 1rem; /* Usando rem para el padding */
-    margin-bottom: 1rem; /* Espacio inferior */
-    min-height: 70px; /* Altura mínima */
-    text-align: center;
+    width: 100%;
+    height: 70px; /* Altura mínima */
     background-color: rgb(189, 127, 255); /* Color de fondo para distinguir */
+    border: 2px solid #000; /* Borde para distinguir el tamaño */
+    text-align: center;
+    padding: 0.1rem; /* Usando rem para el padding */
 }
 
+/* Configuración de los enlaces en la navegación */
 nav a {
-    text-decoration: none;
     color: #000; /* Color de los enlaces */
-    margin: 3rem; /* Espaciado entre enlaces */
+    text-decoration: none;
+    margin: 1rem; /* Espaciado entre enlaces */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre los enlaces */
+    transition: 0.3s; /* Transición para el efecto hover */
     font-size: 1.2rem; /* Tamaño de fuente para los enlaces */
 }
 
+/* Configuración del efecto hover para los enlaces */
+nav a:hover {
+    color: rgb(255, 255, 255); /* Cambiar el color al pasar el mouse */
+    background-color: rgb(249, 64, 255); /* Cambiar el fondo al pasar el mouse */
+}
+
+/* Estilos para el div */
+.container {
+    width: 90%;
+    margin: 1rem auto; /* Centrar el contenedor */
+    font-size: 0;
+}
+
+/* Configuración del área principal */
 main {
-    border: 3px solid #000; /* Borde para distinguir el tamaño */
-    padding-top: 3rem; /* Usando rem para el padding */
     width: 70%; /* Usando porcentaje para el ancho */
-    float: left; /* Colocar a la izquierda */
-    min-height: 400px; /* Altura mínima */
-    text-align: center;
-    background-color: rgb(105, 255, 97); /* Color de fondo para distinguir */
+    height: 50vh; /* Usando vh para la altura */
+    background-color: rgb(255, 182, 133); /* Color de fondo para distinguir */
+    border: 2px solid #000; /* Borde para distinguir el tamaño */
+    display: inline-block; /* Mostrar como bloque en línea */
+    vertical-align: top; /* Alinear verticalmente al inicio */
+    padding: 1rem; /* Usando rem para el padding */
+    font-size: 1rem; /* Tamaño de fuente para el contenido */
 }
 
+/* Configuración del área lateral */
 aside {
-    border: 3px solid #000; /* Borde para distinguir el tamaño */
-    padding-top: 3rem; /* Usando rem para el padding */
     width: 30%; /* Usando porcentaje para el ancho */
-    float: right; /* Colocar a la derecha */
-    min-height: 400px; /* Altura mínima */
-    text-align: center;
-    background-color: rgb(255, 167, 95); /* Color de fondo para distinguir */
+    height: 50vh; /* Usando vh para la altura */
+    background-color: rgb(145, 144, 253); /* Color de fondo para distinguir */
+    border: 2px solid #000; /* Borde para distinguir el tamaño */
+    display: inline-block; /* Mostrar como bloque en línea */
+    vertical-align: top; /* Alinear verticalmente al inicio */
+    padding: 1rem; /* Usando rem para el padding */
+    font-size: 1rem; /* Tamaño de fuente para el contenido */
 }
 
+/* Configuración del pie de página */
 footer {
     width: 100%;
     min-height: 120px; /* Altura mínima */
@@ -72,5 +97,5 @@ footer {
     padding: 1rem; /* Usando rem para el padding */
     text-align: center; /* Centrar el texto */
     float: left;
-    background-color: rgb(105, 255, 255); /* Color de fondo para distinguir */
+    background-color: rgb(179, 255, 156); /* Color de fondo para distinguir */
 }
