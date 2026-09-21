@@ -1,0 +1,66 @@
+<!-- 
+EJERCICIO: ESTRUCTURA BÁSICA DE UNA PÁGINA WEB:
+
+Crea una página web utilizando las principales etiquetas semánticas de HTML5. La página deberá tener la siguiente estructura:
+
+1. HEADER - Será la cabecera de la página. - Ocupará el 100% del ancho. - Tendrá una altura de 150px.
+2. NAV - Estará situado debajo del HEADER. - Ocupará el 100% del ancho. - Tendrá una altura de 70px. - Contendrá cuatro enlaces: Inicio, Productos, Nosotros y Contacto.
+3. CONTENEDOR PRINCIPAL - Tendrá un ancho del 90%. - Estará centrado horizontalmente. - Dentro estarán MAIN y ASIDE.
+4. MAIN - Contendrá el contenido principal. - Ocupará el 70% del contenedor. - Tendrá una altura de 400px.
+5. ASIDE - Contendrá información secundaria. - Ocupará el 30% del contenedor. - Tendrá una altura de 400px.
+6. FOOTER - Será el pie de página. - Ocupará el 100% del ancho. - Tendrá una altura de 120px.
+
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Si me ves, estás hackeado</title>
+    <link rel="stylesheet" href="../css/stylesflipante.css">
+</head>
+<body>
+    <header>
+        <h1>Compila primero, pregunta después</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <b><a href="#Inicio">Inicio</a></b>
+            <b><a href="#Productos">Productos</a></b>
+            <b><a href="#Nosotros">Nosotros</a></b>
+            <b><a href="#Contacto">Contacto</a></b>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <main>
+            <section id="Principal">
+                <h2>Hackeando el mundo</h2>
+                <p><u>Aquí aprenderás a hackear cerebros.</u></p>
+                <img src="../imagenes/cerebro_hackeado.jpg" alt="Hackeando el mundo" />
+            </section>
+        </main>
+
+        <aside id="Secundario">
+            <h2>Herramientas de empresa</h2>
+            <p><u>Como usar un solo destornillador para 50 trabajadores y más</u></p>
+            <img src="../imagenes/destornillador.png" alt="Destornillador para toda la empresa" />
+        </aside>
+
+        <aside id="Secundario2">
+            <h2>Romhackeando con ansia</h2>
+            <nav>
+                    <u><a href="#">Calculando punteros con el Bloc de notas</a>
+                    <a href="#">HEX y yo</a>
+                    <a href="#">BINCII: Cuando el Binario y el ASCII se fusionan - Parte 1</a></u>
+            </nav>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Ahivá la virgen. Todos los derechos reservados (☞ﾟヮﾟ)☞</p>
+    </footer>
+</body>
+</html>

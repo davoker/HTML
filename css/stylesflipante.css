@@ -1,0 +1,144 @@
+
+/* 
+EJERCICIO: ESTRUCTURA BÁSICA DE UNA PÁGINA WEB:
+
+Crea una página web utilizando las principales etiquetas semánticas de HTML5. La página deberá tener la siguiente estructura:
+
+REQUISITOS CSS: - Utilizar un archivo CSS externo.
+- Establecer en HTML un font-size de 20px.
+- Utilizar box-sizing: border-box. 
+- Utilizar px, rem y porcentajes.
+- Centrar el contenedor mediante margin: auto.
+- Añadir un borde a cada zona para poder distinguir claramente su tamaño.
+- MAIN y ASIDE deberán aparecer uno al lado del otro.
+ */
+
+/* Box-sizing hace que el padding y el borde estén incluidos dentro del ancho del elemento */
+
+* {
+    box-sizing: border-box;
+}
+
+/* Establecer un tamaño de fuente base para toda la página */
+html {
+    font-size: 20px;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    background-color: rgb(224, 187, 106);
+}
+
+/* Contenedor de main y aside */
+.container {
+    width: 100%;
+    margin: auto;
+}
+
+/* Estilos para el header */
+header {
+    border: 2px solid #000000; /* Borde para distinguir el tamaño */
+    padding: 1rem; /* Usando rem para el padding */
+    text-align: center; /* Centrar el texto */
+    min-height: 150px; /* Altura mínima */
+    background-color: rgb(105, 255, 255); /* Color de fondo para distinguir */
+}
+
+/* Estilos para el nav */
+nav {
+    border: 2px solid #000; /* Borde para distinguir el tamaño */
+    padding: 1rem; /* Usando rem para el padding */
+    margin-bottom: 1rem; /* Espacio inferior */
+    min-height: 70px; /* Altura mínima */
+    text-align: center;
+    background-color: rgb(189, 127, 255); /* Color de fondo para distinguir */
+}
+
+nav a {
+    text-decoration: none;
+    color: #000; /* Color de los enlaces */
+    margin: 3rem; /* Espaciado entre enlaces */
+    font-size: 1.2rem; /* Tamaño de fuente para los enlaces */
+}
+
+.subrayado {
+    text-decoration: underline;
+}
+
+/* Estilos para el main y aside */
+main {
+    border: 3px solid #000; /* Borde para distinguir el tamaño */
+    padding: 0.3rem; /* Usando rem para el padding */
+    width: 70%; /* Usando porcentaje para el ancho */
+    float: left; /* Colocar a la izquierda */
+    min-height: 400px; /* Altura mínima */
+    text-align: center;
+    background-color: rgb(105, 255, 97); /* Color de fondo para distinguir */
+}
+
+main img {
+    max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
+    height: 250px; /* Establece la altura de la imagen */
+}
+
+aside {
+    border: 3px solid #000; /* Borde para distinguir el tamaño */
+    padding: 0.1rem; /* Usando rem para el padding */
+    width: 30%; /* Usando porcentaje para el ancho */
+    float: right; /* Colocar a la derecha */
+    min-height: 400px; /* Altura mínima */
+    text-align: center;
+}
+
+#Secundario {
+    background-color: rgb(255, 255, 97); /* Color de fondo para distinguir */
+}
+
+#Secundario2 {
+    width: 100%;
+    float: none;
+    clear: both;
+    background-color: rgb(255, 166, 166);
+}
+
+#Secundario2 nav {
+    text-align: center;
+    border: 0;
+    padding: 0;
+    margin: 5rem 0;
+    min-height: 0;
+    background-color: rgb(255, 166, 166);
+}
+
+#Secundario2 nav a {
+    display: block;
+    margin: 0.5rem 0;
+    text-align: center; /* Centrar el texto */
+}
+
+aside ul {
+    border: 3px solid #000; /* Borde para distinguir el tamaño */
+    padding: 3.5rem; /* Usando rem para el padding */
+    width: 100%; /* Usando porcentaje para el ancho */
+    float: none;
+    clear: both;
+    min-height: 200px; /* Altura mínima */
+    font-size: 1.2rem; /* Tamaño de fuente para los enlaces */
+    background-color: rgb(255, 121, 121); /* Color de fondo para distinguir */
+}
+
+aside img {
+    max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
+    height: 230px; /* Establece la altura de la imagen */
+}
+
+/* Estilos para el footer */
+footer {
+    border: 3px solid #000; /* Borde para distinguir el tamaño */
+    padding: 1rem; /* Usando rem para el padding */
+    text-align: center; /* Centrar el texto */
+    margin-top: 6rem; /* Espacio superior */
+    min-height: 120px; /* Altura mínima */
+    background-color: rgb(105, 255, 255); /* Color de fondo para distinguir */
+}
