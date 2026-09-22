@@ -39,7 +39,7 @@ nav {
     background-color: rgb(189, 127, 255); /* Color de fondo para distinguir */
     border: 2px solid #000; /* Borde para distinguir el tamaño */
     text-align: center;
-    padding: 0.1rem; /* Usando rem para el padding cambiamos la posición de las letras hacia rriba o hacia abajo */
+    padding: 1rem; /* Usando rem para el padding cambiamos la posición de las letras hacia rriba o hacia abajo */
 }
 
 /* Configuración de los enlaces en la navegación */
