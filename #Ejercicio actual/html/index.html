@@ -30,16 +30,31 @@
         <ul>
             <!-- li representa una opción y a crea un enlace; href indica adónde debería dirigir. -->
             <li><a href="#">Inicio</a></li>
-            <li><a href="#">Galería</a></li>
-            <li><a href="#">Lugares</a></li>
-            <li><a href="#">Contacto</a></li>
+            <a class="enlace-galeria" href="https://2img.net/h/media.tumblr.com/tumblr_lnpxx7Tus01qakgd0.gif"
+            target="_blank"
+            rel="noopener noreferrer">
+    Galeria
+</a>
+            <!-- <li><a href="#">Galería</a></li> -->
+            <a class="enlace-lugares" href="https://www.tomechangosubanana.com/images/2026/06/typing-stressed.gif"
+            target="_blank"
+            rel="noopener noreferrer">
+    Lugares
+</a>
+            <!-- <li><a href="#">Lugares</a></li> -->
+            <a class="enlace-contacto" href="https://i.redd.it/7zhwd2cv3kde1.gif"
+            target="_blank"
+            rel="noopener noreferrer">
+    Contacto
+</a>
+            <!-- <li><a href="#">Contacto</a></li> -->
         </ul>
     </nav>
 
     <!-- div es un contenedor genérico; class="contenedor" agrupa las dos columnas y permite distribuirlas con CSS. -->
     <div class="contenedor">
 
-        <!-- main identifica el contenido principal de la página y su clase permite darle estilos propios. -->
+        <!-- MAIN identifica el contenido principal de la página y su clase permite darle estilos propios. -->
         <main class="contenido">
             <!-- h2 es un título de segundo nivel, subordinado al h1. -->
             <h2>Nuestros paisajes</h2>
@@ -58,50 +73,50 @@
                     <!-- td representa una celda; las celdas de esta fila contienen imágenes. -->
                     <td>
                         <!-- img inserta una imagen; src indica su archivo y alt ofrece una descripción para accesibilidad. -->
-                        <img src="../img/montana.svg" alt="Montañas nevadas al amanecer">
+                        <img src="../img/imagen-1.jpg" alt="Montañas nevadas al amanecer">
                     </td>
                     <td>
-                        <img src="../img/bosque.svg" alt="Bosque verde con árboles altos">
+                        <img src="../img/imagen-2.jpg" alt="Bosque verde con árboles altos">
                     </td>
                     <td>
-                        <img src="../img/rio.svg" alt="Río tranquilo entre rocas">
+                        <img src="../img/imagen-3.jpg" alt="Río tranquilo entre rocas">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="../img/cascada.svg" alt="Cascada cayendo por una roca">
+                        <img src="../img/imagen-4.jpg" alt="Cascada cayendo por una roca">
                     </td>
                     <td>
-                        <img src="../img/lago.svg" alt="Lago azul rodeado de montañas">
+                        <img src="../img/imagen-5.jpg" alt="Lago azul rodeado de montañas">
                     </td>
                     <td>
-                        <img src="../img/campo.svg" alt="Campo de flores de colores">
+                        <img src="../img/imagen-6.jpg" alt="Campo de flores de colores">
                     </td>
                 </tr>
             </table>
         </main>
 
-        <!-- aside contiene información complementaria; su clase lo identifica como barra lateral para CSS. -->
+        <!-- ASIDE contiene información complementaria; su clase lo identifica como barra lateral para CSS. -->
         <aside class="barra-lateral">
             <!-- h3 crea un subtítulo de tercer nivel para separar grupos de información. -->
-            <h3>Lugares recomendados</h3>
-            <!-- Esta lista reúne lugares recomendados. -->
-            <ul>
-                <li>Parque Nacional de las Montañas</li>
-                <li>Bosque de las Nieblas</li>
-                <li>Río de los Pinares</li>
-                <li>Cascada Escondida</li>
-                <li>Lago Azul</li>
-            </ul>
-
             <h3>Tipos de paisajes</h3>
             <!-- Esta lista muestra categorías de paisajes. -->
             <ul>
-                <li>Montañas</li>
-                <li>Bosques</li>
-                <li>Ríos y cascadas</li>
-                <li>Lagos</li>
-                <li>Campos y llanuras</li>
+                <li><a href="#">Montañas</a></li>
+                <li><a href="#">Bosques</a></li>
+                <li><a href="#">Ríos y cascadas</a></li>
+                <li><a href="#">Lagos</a></li>
+                <li><a href="#">Campos y llanuras</a></li>
+            </ul>
+
+            <h3>Lugares recomendados</h3>
+            <!-- Esta lista reúne lugares recomendados. -->
+            <ul>
+                <li><a href="#">Parque Nacional de las Montañas</a></li>
+                <li><a href="#">Bosque de las Nieblas</a></li>
+                <li><a href="#">Río de los Pinares</a></li>
+                <li><a href="#">Cascada Escondida</a></li>
+                <li><a href="#">Lago Azul</a></li>
             </ul>
 
             <h3>Enlaces relacionados</h3>
