@@ -146,6 +146,7 @@ body {
     width: 30%; /* Ocupa el 30% del contenedor. */
     background-color: #bbdefb; /* Color azul muy claro para diferenciarla del main. */
     padding: 1rem; /* Añade espacio interno para que el contenido no pegue a los bordes. */
+    box-shadow: 0 0 40px rgba(23, 252, 53, 0.986); /* Sombra suave para dar profundidad. */
 }
 
 /* Títulos de la barra lateral. */
