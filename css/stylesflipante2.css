@@ -89,7 +89,7 @@ aside {
     font-size: 1rem; /* Tamaño de fuente para el contenido */
 }
 
-/* Configuración del pie de página */
+/* Estilos-configuración para el footer */
 footer {
     width: 100%;
     min-height: 120px; /* Altura mínima */
@@ -98,4 +98,11 @@ footer {
     text-align: center; /* Centrar el texto */
     float: left;
     background-color: rgb(179, 255, 156); /* Color de fondo para distinguir */
+}
+
+/* En el pie de página, aplicamos el mismo margen a los títulos y párrafos para separar visualmente el contenido del footer y mantener una disposición
+   uniforme entre el h2 y el p. */
+footer h2,
+footer p {
+    margin: 0.5rem ; /* Espaciado entre elementos */
 }
