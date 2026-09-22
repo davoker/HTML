@@ -1,23 +1,34 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Declara que el documento utiliza HTML5, la versión moderna del lenguaje HTML. -->
+<!-- html es el elemento raíz de toda la página; lang="es" indica que su idioma principal es español. -->
 <html lang="es">
+<!-- head contiene información técnica que el navegador necesita, pero que no se muestra como contenido principal. -->
 <head>
+    <!-- Permite mostrar correctamente letras acentuadas, la ñ y otros símbolos mediante la codificación UTF-8. -->
     <meta charset="UTF-8">
+    <!-- Hace que el diseño se adapte a móviles y otros dispositivos según el ancho de su pantalla. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Define el título que aparece en la pestaña del navegador. -->
     <title>Galería de Naturaleza</title>
-    <!-- ../ sube un nivel: de html/ sale a la raíz y entra en css/ -->
+    <!-- link conecta este documento con una hoja de estilos externa; ../ sube desde html/ y entra en css/. -->
+    <!-- rel="stylesheet" identifica el recurso como CSS y href contiene la ruta del archivo de estilos. -->
     <link rel="stylesheet" href="../css/estilos.css">
 </head>
+<!-- body contiene todo el contenido que el usuario puede ver e interpretar en la página. -->
 <body>
 
-<!-- 1. HEADER es el encabezado de la página -->
+<!-- header representa el encabezado principal; class="cabecera" permite aplicarle estilos desde CSS. -->
     <header class="cabecera">
+        <!-- h1 es el título principal de la página y tiene la mayor importancia semántica. -->
         <h1>Quema los bosques</h1>
+        <!-- p representa un párrafo, en este caso usado como texto secundario del encabezado. -->
         <p>Y compra terrenos baratos con ello</p>
     </header>
 
-    <!-- 2. NAV es la barra de navegación -->
+    <!-- nav identifica la navegación principal; class="menu" permite diseñarla con CSS. -->
     <nav class="menu">
+        <!-- ul agrupa elementos en una lista sin numeración. -->
         <ul>
+            <!-- li representa una opción y a crea un enlace; href indica adónde debería dirigir. -->
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Galería</a></li>
             <li><a href="#">Lugares</a></li>
@@ -25,12 +36,14 @@
         </ul>
     </nav>
 
-    <!-- 3. CONTENEDOR PRINCIPAL -->
+    <!-- div es un contenedor genérico; class="contenedor" agrupa las dos columnas y permite distribuirlas con CSS. -->
     <div class="contenedor">
 
-        <!-- 4. MAIN es el área principal de contenido -->
+        <!-- main identifica el contenido principal de la página y su clase permite darle estilos propios. -->
         <main class="contenido">
+            <!-- h2 es un título de segundo nivel, subordinado al h1. -->
             <h2>Nuestros paisajes</h2>
+            <!-- Este párrafo presenta el contenido y el propósito de la galería. -->
             <p>
                 Bienvenidos a nuestra galería de naturaleza. Aquí podréis disfrutar de una
                 selección de paisajes impresionantes: montañas, bosques, ríos, cascadas,
@@ -38,10 +51,13 @@
                 más especiales.
             </p>
 
-            <!-- 6. TABLA es una tabla para organizar la galería -->
+            <!-- table organiza los elementos en filas y columnas; class="galeria" permite darle formato con CSS. -->
             <table class="galeria">
+                <!-- tr representa una fila de la tabla. -->
                 <tr>
+                    <!-- td representa una celda; las celdas de esta fila contienen imágenes. -->
                     <td>
+                        <!-- img inserta una imagen; src indica su archivo y alt ofrece una descripción para accesibilidad. -->
                         <img src="../img/montana.svg" alt="Montañas nevadas al amanecer">
                     </td>
                     <td>
@@ -65,9 +81,11 @@
             </table>
         </main>
 
-        <!-- 5. ASIDE -->
+        <!-- aside contiene información complementaria; su clase lo identifica como barra lateral para CSS. -->
         <aside class="barra-lateral">
+            <!-- h3 crea un subtítulo de tercer nivel para separar grupos de información. -->
             <h3>Lugares recomendados</h3>
+            <!-- Esta lista reúne lugares recomendados. -->
             <ul>
                 <li>Parque Nacional de las Montañas</li>
                 <li>Bosque de las Nieblas</li>
@@ -77,6 +95,7 @@
             </ul>
 
             <h3>Tipos de paisajes</h3>
+            <!-- Esta lista muestra categorías de paisajes. -->
             <ul>
                 <li>Montañas</li>
                 <li>Bosques</li>
@@ -86,7 +105,9 @@
             </ul>
 
             <h3>Enlaces relacionados</h3>
+            <!-- Esta lista agrupa enlaces relacionados con la naturaleza y sus actividades. -->
             <ul>
+                <!-- En estos enlaces, href="#" representa un destino provisional todavía no conectado a otra página. -->
                 <li><a href="#">Turismo rural</a></li>
                 <li><a href="#">Rutas de senderismo</a></li>
                 <li><a href="#">Fotografía de paisajes</a></li>
@@ -95,8 +116,9 @@
 
     </div>
 
-    <!-- 8. FOOTER -->
+    <!-- footer representa el pie de página; class="pie" permite darle estilos desde CSS. -->
     <footer class="pie">
+        <!-- &copy; es una entidad HTML que se muestra como el símbolo de copyright ©. -->
         <p>Alumno: David (👉ﾟヮﾟ)👉 &copy; 2026</p>
     </footer>
 
