@@ -136,14 +136,14 @@ body {
     box-shadow: 0 0 40px rgba(23, 252, 53, 0.986); /* Sombra suave para dar profundidad. */
 }
 
-/* Estilo del título del contenido principal. */
+/* Estilo del título del contenido principal: "Nuestros paisajes" */
 .contenido h2 {
     font-size: 1.5rem; /* Tamaño grande para destacar el encabezado del contenido. */
     /* 30px */
     margin-top: 0; /* Elimina margen superior para que quede pegado arriba. */
 }
 
-/* Estilo de los párrafos del contenido principal. */
+/* Estilo de los párrafos del contenido principal: "Bienvenidos a nuestra galería de naturaleza..." */
 .contenido p {
     font-size: 0.9rem; /* Tamaño ligeramente más pequeño para mantener lectura cómoda. */
     /* 18px */
@@ -164,14 +164,14 @@ body {
 
 /* Títulos de la barra lateral. */
 .barra-lateral h3 {
-    font-size: 1.1rem; /* Tamaño de fuente para los subtítulos de la columna. */
+    font-size: 1.1rem; /* Tamaño de fuente para los subtítulos de la columna: Títulos de secciones */
     /* 22px */
     margin-top: 0.5rem; /* Pequeño margen superior para separarlos. */
     border-bottom: 2px solid #1565c0; /* Línea inferior azul para destacar el título. */
     padding-bottom: 0.2rem; /* Espacio entre texto y la línea inferior. */
 }
 
-/* Estilo de las listas dentro de la barra lateral. */
+/* Estilo de las listas dentro de la barra lateral: Opciones de navegación */
 .barra-lateral ul {
     font-size: 0.85rem; /* Tamaño ligeramente pequeño para que la lista no domine la columna. */
     /* 17px */
@@ -200,7 +200,7 @@ body {
 .galeria {
     width: 100%; /* La tabla ocupa todo el ancho del bloque. */
     border-collapse: collapse; /* Hace que los bordes de las celdas se unan entre sí. */
-    margin-top: 1rem; /* Separa la tabla del texto anterior. */
+    margin-top: 1rem; /* Separa la tabla del texto anterior, lo que es el texto de las imágenes. */
 }
 
 /* Estilo de cada celda de la tabla. */
