@@ -94,12 +94,13 @@ body {
     background-color: #2e7d32; /* Pone fondo verde oscuro al pasar el ratón. */
 }
 
-/* Al pulsar Inicio, muestra el gesto y lo anima usando solo CSS. */
+/* Inicio: prepara el enlace para posicionar el gesto animado debajo del texto. */
 .enlace-inicio {
     position: relative;
     display: inline-block;
 }
 
+/* Inicio: el pseudo-elemento aparece cuando JavaScript añade .animar-gesto después del clic. */
 .enlace-inicio.animar-gesto::after {
     content: "\1F595";
     position: absolute;
@@ -111,6 +112,7 @@ body {
     animation: gestoInicio 1.2s ease-in-out forwards;
 }
 
+/* Animación de Inicio: hace aparecer, destacar y desaparecer el gesto. */
 @keyframes gestoInicio {
     0% {
         opacity: 0;
