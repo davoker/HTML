@@ -138,4 +138,13 @@
     </footer>
 
 </body>
+<script>
+    const enlaceInicio = document.querySelector('.enlace-inicio');
+
+    enlaceInicio.addEventListener('click', () => {
+        enlaceInicio.classList.remove('animar-gesto');
+        void enlaceInicio.offsetWidth;
+        enlaceInicio.classList.add('animar-gesto');
+    });
+</script>
 </html>

@@ -100,7 +100,7 @@ body {
     display: inline-block;
 }
 
-.enlace-inicio:focus::after {
+.enlace-inicio.animar-gesto::after {
     content: "\1F595";
     position: absolute;
     left: 50%;
@@ -267,7 +267,7 @@ body {
 /* Efecto hover para las imágenes: duplica su tamaño y las gira al pasar el ratón. */
 .galeria img:hover {
     transform: scale(2) rotate(360deg); /* Duplica el tamaño y gira la imagen en 2D al pasar el ratón. */
-    transition: transform 1s ease; /* Suaviza la ampliación y el giro. */
+    transition: transform 2s ease; /* Suaviza la ampliación y el giro. */
 }
 
 /* ============================
