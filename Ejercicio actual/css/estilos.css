@@ -141,6 +141,8 @@ body {
     font-size: 1.5rem; /* Tamaño grande para destacar el encabezado del contenido. */
     /* 30px */
     margin-top: 0; /* Elimina margen superior para que quede pegado arriba. */
+    text-shadow: 3px 3px 2px #68fd4a; /* Sombra ligera para dar efecto de profundidad al texto. */
+    animation-name: textGlow;
 }
 
 /* Estilo de los párrafos del contenido principal: "Bienvenidos a nuestra galería de naturaleza..." */
@@ -169,6 +171,7 @@ body {
     margin-top: 0.5rem; /* Pequeño margen superior para separarlos. */
     border-bottom: 2px solid #1565c0; /* Línea inferior azul para destacar el título. */
     padding-bottom: 0.2rem; /* Espacio entre texto y la línea inferior. */
+    text-shadow: 3px 3px 2px #68fd4a; /* Sombra ligera para dar efecto de profundidad al texto. */
 }
 
 /* Estilo de las listas dentro de la barra lateral: Opciones de navegación */
@@ -201,6 +204,7 @@ body {
     width: 100%; /* La tabla ocupa todo el ancho del bloque. */
     border-collapse: collapse; /* Hace que los bordes de las celdas se unan entre sí. */
     margin-top: 1rem; /* Separa la tabla del texto anterior, lo que es el texto de las imágenes. */
+    box-shadow: 0 0 40px rgba(44, 255, 237, 0.986); /* Sombra suave para dar profundidad. */
 }
 
 /* Estilo de cada celda de la tabla. */
