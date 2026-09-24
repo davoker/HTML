@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     INICIO → página estática con SOLO la presentación y la
+     tabla de precios. Cada apartado del nav es una página.
+     ============================================================ -->
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Escapada Natural</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <!-- HEADER: cabecera principal del sitio con logo y nombre del proyecto;
+Ocupará el 100% del ancho y tendrá una altura aproximada de 180px -->
+    <header class="cabecera">
+        <img class="logo" src="../img/logo.svg" alt="Logotipo de Escapada Natural">
+        <div class="cabecera-texto">
+            <h1>Escapada Natural</h1>
+            <p class="frase">Desconecta del ruido y reconecta con la naturaleza</p>
+        </div>
+    </header>
+
+    <!-- NAV: barra de navegación principal con enlaces a las páginas del sitio -->
+    <nav class="menu">
+        <ul>
+            <li><a class="activo" href="index.html">Inicio</a></li>
+            <li><a href="alojamientos.html">Alojamientos</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENEDOR: estructura general con contenido principal y barra lateral -->
+    <div class="contenedor">
+
+        <!-- MAIN: contenido principal de la página de inicio;
+Tendrá un ancho aproximado del 70%. -->
+        <main class="principal">
+
+            <!-- PRESENTACIÓN: texto introductorio y foto principal del sitio;
+La imagen tendrá un ancho máximo del 100%, mantendrá su proporción y tendrá bordes redondeados -->
+            <section class="presentacion">
+                <h2>Bienvenidos a Escapada Natural</h2>
+                <p>
+                    En Escapada Natural ofrecemos casas y cabañas rurales en pleno
+                    entorno de montaña, ideales para desconectar del ritmo de la ciudad.
+                    Todos nuestros alojamientos están cuidados hasta el último detalle
+                    para que solo te preocupes de disfrutar.
+                </p>
+                <p>
+                    Organizamos actividades guiadas, rutas de senderismo, paseos en
+                    bicicleta y visitas culturales por los pueblos de la zona. Ya sea que
+                    vengas en familia, en pareja o con amigos, tenemos una escapada
+                    hecha a tu medida.
+                </p>
+                <img class="foto-grande" src="../img/presentacion.svg" alt="Casa rural rodeada de montañas y árboles">
+            </section>
+
+            <!-- TABLA DE PRECIOS: compara tipo de alojamiento, capacidad y tarifa -->
+            <section class="precios">
+                <h2>Tabla de precios</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Alojamiento</th>
+                            <th>Capacidad</th>
+                            <th>Precio/noche</th>
+                            <th>Desayuno</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Casa del Bosque</td>
+                            <td>4 personas</td>
+                            <td>90 €</td>
+                            <td>Incluido</td>
+                        </tr>
+                        <tr>
+                            <td>Cabaña del Lago</td>
+                            <td>2 personas</td>
+                            <td>75 €</td>
+                            <td>Incluido</td>
+                        </tr>
+                        <tr>
+                            <td>Casa de Montaña</td>
+                            <td>6 personas</td>
+                            <td>120 €</td>
+                            <td>No incluido</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+
+        <!-- ASIDE: información complementaria y secundaria de la página;
+Tendrá un ancho aproximado del 30%. -->
+        <aside class="barra-lateral">
+            <section>
+                <h3>Actividades sugeridas</h3>
+                <ul>
+                    <li>Senderismo</li>
+                    <li>Rutas en bicicleta</li>
+                    <li>Paseos a caballo</li>
+                    <li>Visitas guiadas</li>
+                    <li>Observación de aves</li>
+                </ul>
+            </section>
+            <section class="horarios">
+                <h3>Horarios</h3>
+                <ul>
+                    <li>Recepción: 8:00 – 22:00</li>
+                    <li>Check-in: a partir de 15:00</li>
+                    <li>Check-out: antes de 11:00</li>
+                </ul>
+            </section>
+            <section class="relacionados">
+                <h3>Enlaces relacionados</h3>
+                <ul>
+                    <li><a href="galeria.html">Galería de fotos</a></li>
+                    <li><a href="alojamientos.html">Ver alojamientos</a></li>
+                    <li><a href="contacto.html">Reservar ahora</a></li>
+                </ul>
+            </section>
+        </aside>
+
+    </div>
+
+    <!-- FOOTER: cierre del sitio con datos de contacto y copyright;
+Ocupará el 100% del ancho. -->
+    <footer class="pie">
+        <div class="pie-datos">
+            <p class="pie-nombre">Escapada Natural</p>
+            <p>Camino de la Sierra, 12 - 28680 San Martín de Valdeiglesias</p>
+            <p>Teléfono: 918 456 789 | Correo: info@escapadanatural.es</p>
+        </div>
+        <p class="copyright">&copy; 2026 Escapada Natural. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+
+</html>

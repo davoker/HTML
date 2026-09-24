@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     GALERÍA → página estática con SOLO la galería de imágenes.
+     ============================================================ -->
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - Escapada Natural</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <!-- HEADER: cabecera principal con logo y texto de marca;
+Ocupará el 100% del ancho y tendrá una altura aproximada de 180px -->
+    <header class="cabecera">
+        <img class="logo" src="../img/logo.svg" alt="Logotipo de Escapada Natural">
+        <div class="cabecera-texto">
+            <h1>Escapada Natural</h1>
+            <p class="frase">Desconecta del ruido y reconecta con la naturaleza</p>
+        </div>
+    </header>
+
+    <!-- NAV: navegación entre las páginas principales del sitio -->
+    <nav class="menu">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="alojamientos.html">Alojamientos</a></li>
+            <li><a class="activo" href="galeria.html">Galería</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENEDOR: estructura general con contenido principal y barra lateral -->
+    <div class="contenedor">
+
+        <!-- MAIN: contenido principal de la página de galería;
+Tendrá un ancho aproximado del 70%. -->
+        <main class="principal">
+
+            <!-- GALERÍA: muestra las imágenes principales del entorno natural -->
+            <section id="galeria" class="galeria-zona">
+                <h2>Galería de imágenes</h2>
+                <div class="galeria">
+                    <img src="../img/galeria1.svg" alt="Ruta de senderismo por el bosque">
+                    <img src="../img/galeria2.svg" alt="Paseo en bicicleta por la montaña">
+                    <img src="../img/galeria3.svg" alt="Paseo a caballo por el campo">
+                    <img src="../img/galeria4.svg" alt="Aves volando al atardecer">
+                    <img src="../img/galeria5.svg" alt="Cascada entre las rocas">
+                    <img src="../img/galeria6.svg" alt="Campo de flores en primavera">
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ASIDE: contenido complementario con actividades, horarios y enlaces útiles;
+Tendrá un ancho aproximado del 30%. -->
+        <aside class="barra-lateral">
+            <section>
+                <h3>Actividades sugeridas</h3>
+                <ul>
+                    <li>Senderismo</li>
+                    <li>Rutas en bicicleta</li>
+                    <li>Paseos a caballo</li>
+                    <li>Visitas guiadas</li>
+                    <li>Observación de aves</li>
+                </ul>
+            </section>
+            <section class="horarios">
+                <h3>Horarios</h3>
+                <ul>
+                    <li>Recepción: 8:00 – 22:00</li>
+                    <li>Check-in: a partir de 15:00</li>
+                    <li>Check-out: antes de 11:00</li>
+                </ul>
+            </section>
+            <section class="relacionados">
+                <h3>Enlaces relacionados</h3>
+                <ul>
+                    <li><a href="index.html">Ver precios</a></li>
+                    <li><a href="alojamientos.html">Ver alojamientos</a></li>
+                    <li><a href="contacto.html">Reservar ahora</a></li>
+                </ul>
+            </section>
+        </aside>
+
+    </div>
+
+    <!-- FOOTER: cierre del sitio con datos del contacto y copyright;
+Ocupará el 100% del ancho. -->
+    <footer class="pie">
+        <div class="pie-datos">
+            <p class="pie-nombre">Escapada Natural</p>
+            <p>Camino de la Sierra, 12 - 28680 San Martín de Valdeiglesias</p>
+            <p>Teléfono: 918 456 789 | Correo: info@escapadanatural.es</p>
+        </div>
+        <p class="copyright">&copy; 2026 Escapada Natural. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,668 @@
+/* ============================================================
+   EJERCICIO: WEB COMPLETA DE TURISMO RURAL - "Escapada Natural"
+   Archivo CSS externo (estilos.css) - sin JavaScript
+   Colores naturales: verdes, tierra y crema
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   CONFIGURACIÓN INICIAL
+   · font-size base 20px → de aquí salen todas las unidades rem
+   · box-sizing → padding y bordes incluidos en el width
+   ------------------------------------------------------------ */
+html {
+    font-size: 20px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #eef5ee;   /* fondo verde muy claro */
+    color: #333333;
+}
+
+
+/* ============================================================
+   1. HEADER → 100% ancho, altura ~180px
+   ============================================================ */
+/* .cabecera: crea la cabecera principal del sitio, ocupa todo el ancho
+   y mantiene el logo y el texto alineados horizontalmente. */
+.cabecera {
+    width: 100%;
+    height: 180px;                    /* px: medida fija */
+    background-color: #2f5d3a;        /* verde bosque */
+    color: #ffffff;
+    border-bottom: 5px solid #1e3d27;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+/* .logo: fija el tamaño del logo para que no desfigure el encabezado. */
+.logo {
+    width: 120px;
+    height: 120px;
+    margin-right: 1.5rem;             /* separación logo-texto */
+}
+
+/* .cabecera-texto h1: da estilo al título principal del sitio dentro del header. */
+.cabecera-texto h1 {
+    margin: 0;
+    font-size: 2.2rem;                /* 44px */
+}
+
+/* .frase: resalta la frase o lema del sitio con un estilo más elegante. */
+.frase {
+    margin: 0.3rem 0 0 0;
+    font-size: 1rem;                  /* 20px */
+    font-style: italic;
+    color: #d8ecd8;
+}
+
+
+/* ============================================================
+   2. NAV → debajo del header, sin subrayado, hover y cursor
+   ============================================================ */
+/* .menu: define la barra de navegación con el color verde y la altura fija. */
+.menu {
+    width: 100%;
+    height: 70px;
+    background-color: #4c8a5a;
+    border-bottom: 3px solid #2f5d3a;
+}
+
+/* .menu ul: elimina el estilo por defecto de la lista y centra los enlaces. */
+.menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 100%;
+    text-align: center;               /* centrar los enlaces */
+    line-height: 70px;                /* centrado vertical del texto */
+}
+
+/* .menu li: coloca cada enlace del menú en línea, uno junto al otro. */
+.menu li {
+    display: inline-block;            /* enlaces uno al lado del otro */
+    vertical-align: middle;
+}
+
+/* .menu a: estiliza cada enlace del menú con texto blanco, sin subrayado y con efecto al pasar el cursor. */
+.menu a {
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;            /* sin subrayado */
+    font-size: 1rem;
+    padding: 0 1.2rem;
+    height: 100%;
+    cursor: pointer;                  /* cursor de mano */
+    transition: background-color 0.3s, color 0.3s;  /* transición suave */
+}
+
+/* .menu a:hover: cambia el fondo y el color del texto al pasar sobre un enlace. */
+.menu a:hover {
+    background-color: #1e3d27;
+    color: #ffe9a8;                   /* amarillo claro */
+}
+
+/* .menu a.activo: resalta la página actual para que el usuario sepa dónde está. */
+.menu a.activo {
+    background-color: #1e3d27;
+    color: #ffe9a8;
+    font-weight: bold;
+}
+
+
+/* ============================================================
+   CONTENEDOR PRINCIPAL → 90% y centrado con margin: auto
+   main (70%) y aside (30%) uno al lado del otro (flex)
+   ============================================================ */
+/* .contenedor: centra el contenido principal y crea una disposición horizontal con main y aside. */
+.contenedor {
+    width: 90%;
+    margin: 2rem auto;
+    display: flex;
+    align-items: stretch;             /* misma altura visual */
+    gap: 1.5rem;
+}
+
+
+/* ============================================================
+   3. MAIN → 70% del contenedor, min-height en vh
+   ============================================================ */
+/* .principal: ocupa la parte principal del contenido, dejando espacio para la barra lateral. */
+.principal {
+    width: 70%;
+    min-height: 60vh;                 /* vh: 60% de la ventana */
+}
+
+/* Base de todas las secciones del main: .presentacion, .alojamientos y .precios
+   comparten la misma apariencia visual para que todas las zonas del contenido se vean uniformes. */
+.presentacion,
+.alojamientos,
+.precios {
+    background-color: #ffffff;
+    border: 1px solid #cfe3cf;
+    border-radius: 10px;              /* esquinas redondeadas */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);   /* sombra */
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* .principal h2: da formato a los subtítulos dentro del contenido principal. */
+.principal h2 {
+    margin-top: 0;
+    font-size: 1.5rem;                /* 30px */
+    color: #2f5d3a;
+    border-bottom: 2px solid #4c8a5a;
+    padding-bottom: 0.4rem;
+}
+
+/* .principal p: establece el estilo base de los párrafos del contenido principal. */
+.principal p {
+    font-size: 0.9rem;                /* 18px */
+    line-height: 1.5;
+}
+
+
+/* --- SECCIÓN 1 - Imagen grande --- */
+/* .foto-grande: muestra la imagen destacada del contenido con tamaño completo y bordes suaves. */
+.foto-grande {
+    display: block;
+    width: 100%;                      /* ancho máximo 100% */
+    max-width: 100%;
+    height: auto;                     /* mantiene la proporción */
+    margin-top: 1rem;
+    border-radius: 10px;              /* bordes redondeados */
+}
+
+
+/* --- SECCIÓN 2 - Los 3 artículos (inline-block) --- */
+/* .alojamientos: configura la zona donde se muestran las tarjetas de alojamiento en tres columnas. */
+.alojamientos {
+    /* font-size:0 elimina los espacios en blanco del HTML
+       para que los inline-block no desborden de fila */
+    font-size: 0;
+}
+
+/* .ficha: crea cada tarjeta de alojamiento con fondo, borde y espacio para la imagen y texto. */
+.ficha {
+    display: inline-block;            /* los tres en fila */
+    vertical-align: top;              /* alineados por arriba */
+    width: calc(33.333% - 1.2rem);
+    margin: 0.6rem;
+    background-color: #f7fbf7;
+    border: 2px solid #4c8a5a;        /* borde verde */
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.9rem;                /* restaura el texto */
+    transition: box-shadow 0.3s, transform 0.3s;   /* transición */
+}
+
+/* .ficha-2: alternativa de color para la segunda tarjeta de alojamiento. */
+.ficha-2 {
+    border-color: #795548;            /* marrón tierra */
+    background-color: #fdf8f2;
+}
+
+/* .ficha-3: alternativa de color para la tercera tarjeta de alojamiento, destacando más. */
+.ficha-3 {
+    border-color: #1565c0;            /* azul montaña */
+    background-color: #f2f7fd;
+    box-shadow: 0 4px 10px rgba(21, 101, 192, 0.25);
+}
+
+/* .ficha:hover: levanta la tarjeta al pasar el cursor para dar sensación interactiva. */
+.ficha:hover {
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
+}
+
+/* .ficha img: ajusta la imagen dentro de cada tarjeta para que entre bien y tenga bordes redondeados. */
+.ficha img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 0.6rem;
+}
+
+/* .ficha h3: da estilo al título del alojamiento dentro de la tarjeta. */
+.ficha h3 {
+    margin: 0 0 0.4rem 0;
+    font-size: 1.1rem;
+    color: #2f5d3a;
+}
+
+/* .ficha p: ajusta los textos de descripción y detalle de cada ficha. */
+.ficha p {
+    margin: 0 0 0.5rem 0;
+}
+
+/* .ficha .precio: resalta el precio del alojamiento con color más intenso y negrita. */
+/* specificity (0,2,0) gana a .principal p (0,1,1) sin necesidad de !important */
+.ficha .precio {
+    font-weight: bold;
+    color: #e65100;
+    font-size: 1rem;
+}
+
+/* .enlace-ficha: diseña el botón de “Ver más” de cada alojamiento. */
+.enlace-ficha {
+    display: inline-block;
+    background-color: #4c8a5a;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* .enlace-ficha:hover: cambia el botón al pasar por encima. */
+.enlace-ficha:hover {
+    background-color: #1e3d27;
+}
+
+
+/* --- SECCIÓN 3 - Tabla de precios --- */
+/* .precios table: hace que la tabla ocupe todo el ancho disponible y no tenga dobles bordes. */
+.precios table {
+    width: 100%;                      /* 100% del ancho disponible */
+    border-collapse: collapse;        /* bordes sin doblar */
+}
+
+/* .precios th, .precios td: define el estilo de cada celda y encabezado de la tabla de precios. */
+.precios th,
+.precios td {
+    border: 2px solid #4c8a5a;        /* bordes visibles */
+    padding: 0.6rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* .precios th: da el fondo verde oscuro a la fila de encabezado. */
+.precios th {
+    background-color: #2f5d3a;
+    color: #ffffff;
+}
+
+/* .precios tbody tr:nth-child(even): alterna color de fondo entre filas para mejor legibilidad. */
+.precios tbody tr:nth-child(even) {
+    background-color: #eef5ee;
+}
+
+/* .precios tbody tr: añade suavidad al cambio de color al pasar por encima. */
+.precios tbody tr {
+    transition: background-color 0.3s;
+}
+
+/* .precios tbody tr:hover: destaca la fila seleccionada al pasar el cursor. */
+.precios tbody tr:hover {
+    background-color: #d8ecd8;
+}
+
+
+/* ============================================================
+   4. ASIDE → 30% del contenedor, al lado del main
+   ============================================================ */
+/* .barra-lateral: crea la columna derecha con fondo verde claro y espacio para contenido extra. */
+.barra-lateral {
+    width: 30%;
+    background-color: #e3f0e3;
+    border: 1px solid #cfe3cf;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    padding: 1.2rem;
+    align-self: flex-start;
+}
+
+/* .barra-lateral section: separa cada bloque de información dentro de la barra lateral. */
+.barra-lateral section {
+    margin-bottom: 1.2rem;
+}
+
+/* .barra-lateral h3: da estilo a los subtítulos de cada sección del aside. */
+.barra-lateral h3 {
+    font-size: 1.05rem;
+    color: #2f5d3a;
+    margin: 0 0 0.5rem 0;
+    border-bottom: 2px solid #4c8a5a;
+    padding-bottom: 0.2rem;
+}
+
+/* .barra-lateral ul: ajusta la lista del aside para que se vea ordenada y fácil de leer. */
+.barra-lateral ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* .barra-lateral a: estiliza los enlaces del aside con color azul y sin subrayado. */
+.barra-lateral a {
+    color: #1565c0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+/* .barra-lateral a:hover: resalta los enlaces del aside al pasar el ratón. */
+.barra-lateral a:hover {
+    color: #e65100;
+    text-decoration: underline;
+}
+
+
+/* ============================================================
+   5. GALERÍA → 6 imágenes: bordes redondeados, sombra y hover
+   ============================================================ */
+/* .galeria-zona: crea el bloque de la galería dentro del contenido principal con fondo blanco y diseño uniforme. */
+/* Ahora vive dentro de main (70%), así que ocupa todo su ancho */
+.galeria-zona {
+    width: 100%;
+    margin: 0 0 1.5rem 0;
+    background-color: #ffffff;
+    border: 1px solid #cfe3cf;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
+}
+
+/* .galeria-zona h2: da estilo al título de la sección de fotos. */
+.galeria-zona h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #2f5d3a;
+    border-bottom: 2px solid #4c8a5a;
+    padding-bottom: 0.4rem;
+}
+
+/* .galeria: organiza las imágenes en varias columnas con flex-wrap y espaciado. */
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* .galeria img: hace que cada foto tenga tamaño constante, bordes redondeados y sombra. */
+.galeria img {
+    width: calc(33.333% - 0.7rem);
+    height: auto;
+    border-radius: 8px;               /* bordes redondeados */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);   /* sombra */
+    cursor: pointer;
+    transition: transform 0.3s;       /* transición del hover */
+}
+
+/* .galeria img:hover: amplía ligeramente la imagen al pasar el cursor para resaltar la galería. */
+.galeria img:hover {
+    transform: scale(1.06);
+}
+
+
+/* ============================================================
+   6. FORMULARIO DE CONTACTO → todos los campos con etiqueta
+   ============================================================ */
+/* .contacto-zona: crea la sección del formulario con fondo blanco y bordes similares al resto del contenido. */
+/* Ahora vive dentro de main (70%), así que ocupa todo su ancho */
+.contacto-zona {
+    width: 100%;
+    margin: 0 0 1.5rem 0;
+    background-color: #ffffff;
+    border: 1px solid #cfe3cf;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
+}
+
+/* .contacto-zona h2: da estilo al título del formulario de contacto. */
+.contacto-zona h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #2f5d3a;
+    border-bottom: 2px solid #4c8a5a;
+    padding-bottom: 0.4rem;
+}
+
+/* .contacto-zona form: elimina espacios extra para que los campos y botones queden distribuidos mejor. */
+.contacto-zona form {
+    font-size: 0;                     /* evita espacios entre inline-block */
+}
+
+/* .campo: configura cada bloque de formulario con ancho de la mitad para que queden dos columnas. */
+.campo {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(50% - 0.6rem);
+    margin: 0.4rem 0.3rem;
+    font-size: 0.9rem;
+}
+
+/* .campo-completo: hace que un campo ocupe todo el ancho del formulario. */
+.campo-completo {
+    width: calc(100% - 0.6rem);
+}
+
+/* .campo label: muestra la etiqueta del campo con estilo más visible y legible. */
+.campo label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    color: #2f5d3a;
+}
+
+/* .campo input, .campo select, .campo textarea: unifica la apariencia de los inputs del formulario. */
+.campo input,
+.campo select,
+.campo textarea {
+    width: 100%;
+    padding: 0.45rem;
+    border: 1px solid #a5c9a5;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f7fbf7;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* .campo input:focus, ...: destaca el campo cuando el usuario está escribiendo en él. */
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    border-color: #2f5d3a;
+    box-shadow: 0 0 5px rgba(47, 93, 58, 0.4);
+    outline: none;
+}
+
+/* .boton: diseña el botón principal del formulario con fondo verde oscuro y texto blanco. */
+.boton {
+    display: block;
+    margin: 1rem auto;
+    background-color: #2f5d3a;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* .boton:hover: da un efecto visual al pasar el cursor sobre el botón. */
+.boton:hover {
+    background-color: #4c8a5a;
+    transform: scale(1.05);
+}
+
+
+/* ============================================================
+   7. FOOTER → 100% de ancho, datos y copyright
+   ============================================================ */
+/* .pie: crea el footer del sitio, con fondo oscuro y texto centrado para cerrar la web. */
+.pie {
+    width: 100%;
+    min-height: 120px;
+    background-color: #1e3d27;
+    color: #ffffff;
+    text-align: center;               /* texto centrado */
+    padding: 1.2rem;
+    border-top: 5px solid #4c8a5a;
+}
+
+/* .pie .pie-nombre: destaca el nombre o empresa del footer con tamaño mayor y negrita. */
+/* (0,2,0) gana a .pie p (0,1,1): sin esto el título no se agranda */
+.pie .pie-nombre {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 0 0.4rem 0;
+}
+
+/* .pie p: establece el estilo general de los textos de información del footer. */
+.pie p {
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+}
+
+/* .pie .copyright: da un estilo más discreto al texto de copyright. */
+.pie .copyright {
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+    color: #a5c9a5;
+}
+
+
+/* ============================================================
+   PÁGINAS DE DETALLE DE ALOJAMIENTO
+   (casa_bosque.html, cabana_lago.html, casa_montana.html)
+   ============================================================ */
+/* .detalle: crea el contenedor principal de una página de reserva o descripción del alojamiento. */
+.detalle {
+    width: 90%;
+    margin: 2rem auto;
+    min-height: 60vh;                 /* vh: altura mínima de ventana */
+    background-color: #ffffff;
+    border: 1px solid #cfe3cf;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
+}
+
+/* .detalle h1: da estilo al título principal de la ficha de alojamiento. */
+.detalle h1 {
+    margin: 0.8rem 0;
+    font-size: 1.8rem;
+    color: #2f5d3a;
+}
+
+/* .detalle p: define el texto de descripción de cada alojamiento. */
+.detalle p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Botón "← Volver a alojamientos" */
+/* .volver: diseña el enlace para regresar a la página de alojamientos. */
+.volver {
+    display: inline-block;
+    background-color: #4c8a5a;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.volver:hover {
+    background-color: #1e3d27;
+}
+
+/* Tarjetas de datos rápidos (precio / capacidad / desayuno) */
+/* .datos-detalle: crea una fila de mini tarjetas con los principales datos del alojamiento. */
+.datos-detalle {
+    font-size: 0;                     /* evita espacios entre inline-block */
+    margin: 1.2rem 0;
+}
+
+/* .dato: define cada mini tarjeta de información con fondo, borde y centrado. */
+.dato {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(33.333% - 1.2rem);
+    margin: 0.6rem;
+    background-color: #f7fbf7;
+    border: 2px solid #4c8a5a;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* .dato strong: resalta el valor principal dentro de la tarjeta, por ejemplo “€120”. */
+.dato strong {
+    display: block;
+    font-size: 1.3rem;
+    color: #e65100;
+    margin-bottom: 0.3rem;
+}
+
+/* .dato-2: segunda variante de color para una tarjeta de información. */
+.dato-2 {
+    border-color: #795548;
+    background-color: #fdf8f2;
+}
+
+/* .dato-2 strong: ajusta el color del valor principal en la segunda variante. */
+.dato-2 strong {
+    color: #795548;
+}
+
+/* .dato-3: tercera variante de color para otra tarjeta de información. */
+.dato-3 {
+    border-color: #1565c0;
+    background-color: #f2f7fd;
+}
+
+/* .dato-3 strong: ajusta el color del valor principal en la tercera variante. */
+.dato-3 strong {
+    color: #1565c0;
+}
+
+/* .acciones-detalle: da margen superior a los botones o acciones de la página de detalle. */
+.acciones-detalle {
+    margin-top: 1.2rem;
+}
+
+
+/* ============================================================
+   TÍTULOS DE LAS FICHAS COMO ENLACE (index.html)
+   ============================================================ */
+/* .titulo-ficha: hace que el título de cada alojamiento se comporte como enlace sin subrayado. */
+.titulo-ficha {
+    color: inherit;                   /* hereda el color del h3 */
+    text-decoration: none;            /* sin subrayado */
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+/* .titulo-ficha:hover: cambia el color del título al pasar el cursor para indicar que es clicable. */
+.titulo-ficha:hover {
+    color: #e65100;
+    text-decoration: underline;
+}
+
+/* La imagen envuelta en <a> no debe deformarse */
+/* .ficha > a: evita que la imagen dentro del enlace se distorsione al cambiar el display. */
+.ficha > a {
+    display: block;
+}

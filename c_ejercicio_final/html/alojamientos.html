@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     ALOJAMIENTOS → página estática con SOLO la sección de
+     los tres alojamientos enlazados a sus páginas de detalle.
+     ============================================================ -->
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alojamientos - Escapada Natural</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <!-- HEADER: cabecera principal con logo y nombre del sitio;
+Ocupará el 100% del ancho y tendrá una altura aproximada de 180px -->
+    <header class="cabecera">
+        <img class="logo" src="../img/logo.svg" alt="Logotipo de Escapada Natural">
+        <div class="cabecera-texto">
+            <h1>Escapada Natural</h1>
+            <p class="frase">Desconecta del ruido y reconecta con la naturaleza</p>
+        </div>
+    </header>
+
+    <!-- NAV: navegación entre las páginas principales -->
+    <nav class="menu">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a class="activo" href="alojamientos.html">Alojamientos</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENEDOR: estructura con contenido principal y barra lateral -->
+    <div class="contenedor">
+
+        <!-- MAIN: contenido principal con las tarjetas de alojamiento;
+Tendrá un ancho aproximado del 70%. -->
+        <main class="principal">
+
+            <!-- ALOJAMIENTOS: sección con tres tarjetas de propiedades disponibles -->
+            <section id="alojamientos" class="alojamientos">
+                <h2>Nuestros alojamientos</h2>
+
+                <!-- article 1: primera tarjeta de alojamiento -->
+                <article class="ficha">
+                    <img src="../img/casa_bosque.svg" alt="Casa del Bosque entre árboles">
+                    <h3>Casa del Bosque</h3>
+                    <p>Casa acogedora de dos plantas rodeada de robles, con chimenea
+                        y terraza privada.</p>
+                    <p class="precio">90 € / noche</p>
+                    <a class="enlace-ficha" href="contacto.html">Más información</a>
+                </article>
+
+                <!-- article 2: segunda tarjeta con estilo alternativo -->
+                <article class="ficha ficha-2">
+                    <img src="../img/cabana_lago.svg" alt="Cabaña del Lago junto al agua">
+                    <h3>Cabaña del Lago</h3>
+                    <p>Cabaña de madera para dos personas junto al lago, perfecta
+                        para parejas que buscan tranquilidad.</p>
+                    <p class="precio">75 € / noche</p>
+                    <a class="enlace-ficha" href="contacto.html">Más información</a>
+                </article>
+
+                <!-- article 3: tercera tarjeta con estilo destacado -->
+                <article class="ficha ficha-3">
+                    <img src="../img/casa_montana.svg" alt="Casa de Montaña con fondo de picos">
+                    <h3>Casa de Montaña</h3>
+                    <p>Amplia casa de piedra para seis personas con vistas a los
+                        picos y gran salón con hogar.</p>
+                    <p class="precio">120 € / noche</p>
+                    <a class="enlace-ficha" href="contacto.html">Más información</a>
+                </article>
+            </section>
+
+        </main>
+
+        <!-- ASIDE: información complementaria con actividades, horarios y enlaces útiles;
+Tendrá un ancho aproximado del 30%. -->
+        <aside class="barra-lateral">
+            <section>
+                <h3>Actividades sugeridas</h3>
+                <ul>
+                    <li>Senderismo</li>
+                    <li>Rutas en bicicleta</li>
+                    <li>Paseos a caballo</li>
+                    <li>Visitas guiadas</li>
+                    <li>Observación de aves</li>
+                </ul>
+            </section>
+            <section class="horarios">
+                <h3>Horarios</h3>
+                <ul>
+                    <li>Recepción: 8:00 – 22:00</li>
+                    <li>Check-in: a partir de 15:00</li>
+                    <li>Check-out: antes de 11:00</li>
+                </ul>
+            </section>
+            <section class="relacionados">
+                <h3>Enlaces relacionados</h3>
+                <ul>
+                    <li><a href="index.html">Ver precios</a></li>
+                    <li><a href="galeria.html">Galería de fotos</a></li>
+                    <li><a href="contacto.html">Reservar ahora</a></li>
+                </ul>
+            </section>
+        </aside>
+
+    </div>
+
+    <!-- FOOTER: cierre del sitio con datos de contacto y copyright;
+Ocupará el 100% del ancho. -->
+    <footer class="pie">
+        <div class="pie-datos">
+            <p class="pie-nombre">Escapada Natural</p>
+            <p>Camino de la Sierra, 12 - 28680 San Martín de Valdeiglesias</p>
+            <p>Teléfono: 918 456 789 | Correo: info@escapadanatural.es</p>
+        </div>
+        <p class="copyright">&copy; 2026 Escapada Natural. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+
+</html>

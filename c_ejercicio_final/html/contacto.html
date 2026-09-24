@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     CONTACTO → página estática con SOLO el formulario.
+     ============================================================ -->
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Escapada Natural</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <!-- HEADER: cabecera principal con logo y nombre del sitio;
+Ocupará el 100% del ancho y tendrá una altura aproximada de 180px -->
+    <header class="cabecera">
+        <img class="logo" src="../img/logo.svg" alt="Logotipo de Escapada Natural">
+        <div class="cabecera-texto">
+            <h1>Escapada Natural</h1>
+            <p class="frase">Desconecta del ruido y reconecta con la naturaleza</p>
+        </div>
+    </header>
+
+    <!-- NAV: menú principal para moverse entre páginas -->
+    <nav class="menu">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="alojamientos.html">Alojamientos</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a class="activo" href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENEDOR: estructura con contenido principal y barra lateral -->
+    <div class="contenedor">
+
+        <!-- MAIN: contenido principal de la página de contacto;
+Tendrá un ancho aproximado del 70%. -->
+        <main class="principal">
+
+            <!-- FORMULARIO: recoge los datos de la reserva o consulta del cliente -->
+            <section id="contacto" class="contacto-zona">
+                <h2>Formulario de contacto</h2>
+                <form action="#" method="post">
+
+                    <div class="campo">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
+                    </div>
+
+                    <div class="campo">
+                        <label for="apellidos">Apellidos:</label>
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Tus apellidos">
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" id="email" name="email" placeholder="ejemplo@correo.com">
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="600 000 000">
+                    </div>
+
+                    <div class="campo">
+                        <label for="tipo">Tipo de alojamiento:</label>
+                        <select id="tipo" name="tipo">
+                            <option value="">-- Elige una opción --</option>
+                            <option value="bosque">Casa del Bosque</option>
+                            <option value="cabana">Cabaña del Lago</option>
+                            <option value="montana">Casa de Montaña</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="entrada">Fecha de entrada:</label>
+                        <input type="date" id="entrada" name="entrada">
+                    </div>
+
+                    <div class="campo">
+                        <label for="personas">Número de personas:</label>
+                        <input type="number" id="personas" name="personas" min="1" max="6" value="2">
+                    </div>
+
+                    <div class="campo campo-completo">
+                        <label for="observaciones">Observaciones:</label>
+                        <textarea id="observaciones" name="observaciones" rows="4"
+                            placeholder="Cuéntanos qué necesitas..."></textarea>
+                    </div>
+
+                    <button type="submit" class="boton">Enviar solicitud</button>
+
+                </form>
+            </section>
+
+        </main>
+
+        <!-- ASIDE: información complementaria con actividades, horarios y enlaces útiles;
+Tendrá un ancho aproximado del 30%. -->
+        <aside class="barra-lateral">
+            <section>
+                <h3>Actividades sugeridas</h3>
+                <ul>
+                    <li>Senderismo</li>
+                    <li>Rutas en bicicleta</li>
+                    <li>Paseos a caballo</li>
+                    <li>Visitas guiadas</li>
+                    <li>Observación de aves</li>
+                </ul>
+            </section>
+            <section class="horarios">
+                <h3>Horarios</h3>
+                <ul>
+                    <li>Recepción: 8:00 – 22:00</li>
+                    <li>Check-in: a partir de 15:00</li>
+                    <li>Check-out: antes de 11:00</li>
+                </ul>
+            </section>
+            <section class="relacionados">
+                <h3>Enlaces relacionados</h3>
+                <ul>
+                    <li><a href="index.html">Ver precios</a></li>
+                    <li><a href="alojamientos.html">Ver alojamientos</a></li>
+                    <li><a href="galeria.html">Galería de fotos</a></li>
+                </ul>
+            </section>
+        </aside>
+
+    </div>
+
+    <!-- FOOTER: cierre del sitio con datos de contacto y copyright;
+Ocupará el 100% del ancho. -->
+    <footer class="pie">
+        <div class="pie-datos">
+            <p class="pie-nombre">Escapada Natural</p>
+            <p>Camino de la Sierra, 12 - 28680 San Martín de Valdeiglesias</p>
+            <p>Teléfono: 918 456 789 | Correo: info@escapadanatural.es</p>
+        </div>
+        <p class="copyright">&copy; 2026 Escapada Natural. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+
+</html>
