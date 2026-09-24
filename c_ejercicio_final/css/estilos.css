@@ -171,13 +171,13 @@ body {
 
 
 /* --- SECCIÓN 1 - Imagen grande --- */
-/* .foto-grande: muestra la imagen destacada del contenido con tamaño completo y bordes suaves. */
+/* .foto-grande: imagen destacada más pequeña y centrada para no dominar demasiado la página. */
 .foto-grande {
     display: block;
-    width: 100%;                      /* ancho máximo 100% */
-    max-width: 100%;
+    width: 90%;                       /* ancho menor que el contenedor */
+    max-width: 700px;                 /* límite en tamaño grande */
     height: auto;                     /* mantiene la proporción */
-    margin-top: 1rem;
+    margin: 1rem auto 0 auto;         /* centra la imagen */
     border-radius: 10px;              /* bordes redondeados */
 }
 
@@ -223,11 +223,12 @@ body {
     transform: translateY(-4px);
 }
 
-/* .ficha img: ajusta la imagen dentro de cada tarjeta para que entre bien y tenga bordes redondeados. */
+/* .ficha img: ajusta la imagen dentro de cada tarjeta para que todas tengan el mismo tamaño y proporción. */
 .ficha img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 180px;                   /* todas las imágenes tienen la misma altura */
+    object-fit: cover;               /* recorta la imagen para llenar el espacio sin deformarla */
     border-radius: 6px;
     margin-bottom: 0.6rem;
 }
