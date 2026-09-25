@@ -70,16 +70,33 @@ let nombre = "David";	/* String: guarda una cadena de texto, en este caso un nom
 let edad2 = 45;	/* Number: guarda un número entero. */
 let altura = 1.71;	/* Number: guarda un número decimal; JavaScript usa el tipo Number para ambos. */
 let tieneCarnet = true;	/* Boolean: solo puede tener los valores true o false. */
-let tieneCoche;	/* Undefined: la variable está declarada, pero no tiene ningún valor asignado. */
-let tieneMoto = null;	/* Null: indica intencionadamente que la variable no tiene ningún valor. */
+let datoSinDefinir;	/* Undefined: la variable está declarada, pero no tiene ningún valor asignado. */
+let datoVacio = null;	/* Null: indica intencionadamente que la variable no tiene ningún valor. */
 let lenguajes = ["JavaScript", "Python", "Java"];	/* Array: almacena varios valores en un orden determinado. Hemos creado una variable llamada lenguajes que contiene un array, sirve para guardar varios valores dentro de una misma variable, cada valor ocupa una posición dentro del array, la posición en el array EMPIEZA A CONTAR DESDE CERO, NUNCA DESDE UNO. */
 let persona = {nombre: "David", edad: 45};	/* Object: agrupa datos relacionados mediante propiedades. Aquí hemos creador un objeto que sirve para agrupar varios datos que pertenecen a un objeto, en este caso "name" es una propiedad del objeto y "David" es el valor de esa propiedad. */
 
 // Mostrar el resultado en la consola.
-console.log(nombre, edad2, altura, tieneCarnet, tieneCoche, tieneMoto, lenguajes, persona);	// Muestra todos los valores para poder inspeccionarlos.
+// Muestra todos los valores para poder inspeccionarlos.
+console.log(
+"Nombre:", nombre, "- Tipo:", typeof nombre,
+"\nEdad:", edad2, "- Tipo:", typeof edad2,
+"\nAltura:", altura, "- Tipo:", typeof altura,
+"\nTiene carnet:", tieneCarnet, "- Tipo:", typeof tieneCarnet,
+"\nTiene coche:", datoSinDefinir, "- Tipo:", typeof datoSinDefinir,
+"\nTiene motor:", datoVacio, "- Tipo:", typeof datoVacio,
+"\nLenguajes:", lenguajes, "- Tipo:", typeof lenguajes,
+"\nPersona:", persona, "- Tipo:", typeof persona
+);
 
-// Comprobación del tipo de cada variable con typeof.
-console.log(typeof nombre, typeof edad2, typeof altura, typeof tieneCarnet, typeof tieneCoche, typeof tieneMoto, typeof lenguajes, typeof persona);	// typeof devuelve el tipo; para null y los arrays devuelve "object".
+/* Declara una variable dentro de una función y trata de acceder a ella fuera de la función */
+//declaración de la función
+function miFunction(){
+    let mensaje = "Pene brutal";
+    console.log(mensaje);
+}
+
+//ejecución de la función
+miFunction();
 
 </script>
 
