@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+
+    // Crea una función (un bloque de instrucciones que podemos reutilizar) llamada saludar.
+    // nombre y apellido son parámetros: nombres temporales para los datos que recibirá.
+    function saludar(nombre, apellido){
+        // document.write muestra texto en la página. El signo + une los textos y los datos.
+        // <br> hace que lo siguiente aparezca en una línea nueva.
+        document.write("Hola "+ nombre+ " "+apellido+"<br>");
+    }
+
+    // Llama (pone en marcha) la función y le pasa estos datos: nombre="patata", apellido="jr".
+    saludar("patata","jr");
+
+// Crea la función sumar. sumar1 y sumar2 son parámetros que representan los números recibidos.
+function sumar(sumar1, sumar2){
+    // El signo + suma números. Aquí se muestra directamente el resultado en la página.
+    document.write(sumar1+sumar2);
+    // Escribe <br>, una etiqueta HTML que inicia una línea nueva.
+    document.write("<br>");
+}
+
+// Pone en marcha sumar con los números 8 y 7; la página muestra 15.
+sumar(8, 7)
+
+// Crea la función doble, que recibe un número en el parámetro numero.
+function doble(numero){
+    // * significa multiplicar. return entrega el resultado al lugar donde se llamó la función.
+    return numero*2;
+}
+
+// Llama a doble con 10. La función devuelve 20 y document.write lo muestra en la página.
+document.write(doble(10))
+
+// Escribe <br> para que el próximo resultado aparezca en una línea nueva.
+document.write("<br>");
+
+// Crea calcularTotal. Sus parámetros son el precio de una unidad y cuántas unidades hay.
+function calcularTotal(precio, cantidad){
+    // Multiplica el precio por la cantidad y return entrega ese total a quien llamó la función.
+    return precio*cantidad;
+}
+
+// Llama a calcularTotal con precio 20 y cantidad 5. Devuelve 100 y document.write lo muestra.
+document.write(calcularTotal(20,5))
+
+</script>
+
+</body>
+</html>
