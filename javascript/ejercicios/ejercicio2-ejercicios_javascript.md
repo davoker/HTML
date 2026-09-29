@@ -69,7 +69,11 @@ Producto: Monitor Precio original: 200 EUR Descuento: 15 % Cantidad descontada: 
 
 - Utiliza etiquetas HTML dentro de document.write() para organizar la información en varias líneas.
 
-Resultado esperado: RESUMEN DE COMPRA Producto: Portátil Precio unidad: 650 EUR
+Resultado esperado:
+
+RESUMEN DE COMPRA
+
+Producto: Portátil Precio unidad: 650 EUR
 
 Cantidad: 2
 

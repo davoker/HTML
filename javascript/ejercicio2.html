@@ -1,0 +1,170 @@
+<!-- Crea tres variables llamadas nombre, edad y ciudad.
+
+Asigna un valor a cada variable.
+
+Muestra los tres datos en la página utilizando document.write().
+
+Ejemplo de salida: Nombre: Laura Edad: 25 Ciudad: Gijón -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- La etiqueta script contiene código JavaScript que el navegador ejecuta. -->
+    <script>
+        let nombre = "Laura"; 	// let crea una variable y = le asigna el texto "Laura".
+        let edad = 25; 	// Guarda un número, que puede utilizarse en operaciones matemáticas.
+        let ciudad = "Gijón"; 	// Guarda una cadena de texto entre comillas.
+        document.write("Nombre: " + nombre); 	// Escribe una etiqueta y une el texto con el valor de nombre usando +.
+        document.write("<br>"); 	// Escribe <br>, que produce un salto de línea en HTML.
+        document.write("Edad: " + edad); 	// Muestra el texto "Edad:" seguido del valor de edad.
+        document.write("<br>"); 	// Añade otro salto de línea.
+        document.write("Ciudad: " + ciudad); 	// Muestra el texto "Ciudad:" seguido del valor de ciudad.
+    </script>
+
+<!-- Crea las variables producto, precio y cantidad.
+
+Asigna valores a las tres variables.
+
+Crea una nueva variable llamada total que calcule el resultado de multiplicar el precio por la cantidad.
+
+Muestra todos los datos y el total utilizando document.write().
+
+Ejemplo de salida: Producto: Teclado Precio: 30 EUR Cantidad: 2
+
+Total: 60 EUR -->
+
+    <!-- Este bloque escribe dos saltos de línea para separar los ejercicios. -->
+    <script>
+        document.write("<br>"); 	// Añade un salto de línea para dejar espacio entre los ejercicios.
+        document.write("<br>"); 	// Añade un segundo salto de línea.
+    </script>
+
+    <!-- Ejercicio de producto: cada variable guarda un dato de la compra. -->
+    <script>
+        let producto = "Cerebro Anti-Hackers";
+        let precio = 1500;
+        let cantidad = 4;
+        let total = precio*cantidad; 	// Multiplica el precio por unidad por el número de unidades.
+        document.write("Producto: " + producto); 	// Muestra el nombre del producto.
+        document.write("<br>"); 	// Empieza una línea nueva en la página.
+        document.write("Precio: " + precio); 	// Muestra el precio de una unidad.
+        document.write("<br>"); 	// Empieza una línea nueva en la página.
+        document.write("Cantidad: " + cantidad); 	// Muestra el número de unidades compradas.
+        document.write("<br>"); 	// Empieza una línea nueva en la página.
+        document.write("Total: " + total); 	// Muestra el resultado de precio por cantidad.
+    </script>
+
+    <!-- Deja espacio entre el resumen del producto y el siguiente ejercicio. -->
+    <script>
+        document.write("<br>"); 	// Añade un salto de línea para separar los ejercicios.
+        document.write("<br>"); 	// Añade un segundo salto de línea.
+    </script>
+
+    <!-- Crea una variable nombre con el nombre de una persona.
+
+Crea una variable anioNacimiento con su año de nacimiento.
+
+Crea otra variable anioActual con el valor 2026.
+
+Crea una variable edad que calcule la edad aproximada restando el año de nacimiento al año actual.
+
+Muestra una frase completa utilizando document.write().
+
+Ejemplo de salida: Ana nació en 1990 y tiene aproximadamente 36 años. -->
+
+    <script>
+        let nombre2 = "David"; 	// Usa nombre2 para no volver a declarar nombre, que ya existe en el primer ejercicio.
+        let añoNacimiento = 1981; 	// Guarda el año de nacimiento.
+        let añoActual = 2026; 	// Guarda el año actual indicado en el ejercicio.
+        let edad2 = añoActual-añoNacimiento; 	// Resta ambos años para calcular la edad aproximada.
+        document.write("David"); 	// Escribe el nombre directamente; también podrías usar la variable nombre2.
+        document.write(" nació en " + añoNacimiento); 	// Añade el año de nacimiento a la frase.
+        document.write(" y tiene aproximadamente " + edad); 	// Muestra edad del primer ejercicio (25), no edad2 (45).
+        document.write(" años."); 	// Añade el final de la frase.
+        </script>
+
+    <!-- Separa el ejercicio de la edad del siguiente ejercicio. -->
+    <script>
+        document.write("<br>"); 	// Añade un salto de línea para separar los ejercicios.
+        document.write("<br>"); 	// Añade un segundo salto de línea.
+    </script>
+
+<!-- Una tienda tiene un producto llamado Monitor, con un precio de 200 EUR y un descuento del 15 %.
+
+Crea las variables necesarias para guardar esos datos.
+
+Calcula cuánto dinero se descuenta y guárdalo en una nueva variable.
+
+Calcula el precio final después de aplicar el descuento.
+
+Muestra el producto, precio original, porcentaje de descuento, cantidad descontada y precio final con document.write().
+
+Resultado esperado:
+
+Producto: Monitor Precio original: 200 EUR Descuento: 15 % Cantidad descontada: 30 EUR Precio final: 170 EUR -->
+
+    <script>
+        let producto2 = "Monitor"; 	// Guarda el nombre del producto.
+        let precio2 = 200; 	// Guarda el precio original del producto.
+        let descuento = 15; 	// Guarda el porcentaje de descuento.
+        let cantidadDescontada = precio2*descuento/100; 	// Calcula el importe descontado: precio por porcentaje dividido entre 100.
+        let precioFinal = precio2-cantidadDescontada; 	// Resta el importe descontado al precio original.
+        document.write("Producto: " + producto2); 	// Muestra el nombre del producto.
+        document.write("<br>"); 	// Empieza una línea nueva en la página.
+        document.write("Precio original: " + precio2); 	// Muestra el precio antes del descuento.
+        document.write("<br>"); 	// Empieza una línea nueva en la página.
+        document.write("Descuento: " + descuento + "%"); 	// Muestra el porcentaje de descuento y el símbolo %.
+        document.write("<br>"); 	// Empieza una línea nueva en la página.
+        document.write("Cantidad descontada: " + cantidadDescontada); 	// Muestra cuántos euros se descuentan.
+        document.write("<br>"); 	// Empieza una línea nueva en la página.
+        document.write("Precio final: " + precioFinal); 	// Muestra el precio después de aplicar el descuento.
+    </script>
+
+    <!-- Añade dos saltos de línea antes del resumen de compra completo. -->
+    <script>
+        document.write("<br>"); 	// Añade un salto de línea antes del nuevo resumen.
+        document.write("<br>"); 	// Añade un segundo salto de línea.
+    </script>
+
+<!-- Crea las variables producto, precio, cantidad, descuento y gastosEnvio.
+
+Utiliza como datos: Portátil, 650 EUR, 2 unidades, 10 % de descuento y 15 EUR de gastos de envío.
+
+Crea nuevas variables para calcular: el subtotal, la cantidad descontada, el precio después del descuento y el precio final añadiendo los gastos de envío.
+
+Muestra todo el resumen de la compra utilizando document.write().
+
+Utiliza etiquetas HTML dentro de document.write() para organizar la información en varias líneas.
+
+Resultado esperado: RESUMEN DE COMPRA Producto: Portátil Precio unidad: 650 EUR -->
+
+    <script>
+        let producto3 = "Portátil"; 	// Guarda el nombre del producto.
+        let precio3 = 650; 	// Guarda el precio de una unidad en euros.
+        let cantidad2 = 2; 	// Guarda el número de unidades compradas.
+        let descuento2 = 10; 	// Guarda el porcentaje de descuento.
+        let gastosEnvio = 15; 	// Guarda el coste del envío en euros.
+        let subtotal = precio3*cantidad2; 	// Multiplica el precio por unidad por la cantidad, antes del descuento.
+        let cantidadDescontada2 = subtotal*descuento2/100; 	// Calcula el importe que se descuenta del subtotal.
+        let precioFinal2 = subtotal-cantidadDescontada2; 	// Calcula el precio con descuento, sin incluir el envío.
+        let precioFinal3 = precioFinal2+gastosEnvio; 	// Suma el envío para obtener el total que se debe pagar.
+        document.write("<h1>RESUMEN DE COMPRA</h1>"); 	// Escribe un título HTML de nivel 1.
+        document.write("<p>Producto: " + producto3 + "</p>"); 	// Muestra el nombre del producto dentro de un párrafo.
+        document.write("<p>Precio unidad: " + precio3 + " EUR</p>"); 	// Muestra el precio de una unidad.
+        document.write("<p>Cantidad: " + cantidad2 + "</p>"); 	// Muestra cuántas unidades se compran.
+        document.write("<p>Descuento: " + descuento2 + "%</p>"); 	// Muestra el descuento en porcentaje.
+        document.write("<p>Gastos de envío: " + gastosEnvio + " EUR</p>"); 	// Muestra el coste del envío.
+        document.write("<p>Subtotal: " + subtotal + " EUR</p>"); 	// Muestra el precio de los productos antes del descuento.
+        document.write("<p>Cantidad descontada: " + cantidadDescontada2 + " EUR</p>"); 	// Muestra el importe descontado.
+        document.write("<p>Precio final: " + precioFinal3 + " EUR</p>"); 	// Muestra el precio con descuento más los gastos de envío.
+    </script>
+
+
+</body>
+</html>
