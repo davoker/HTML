@@ -20,6 +20,10 @@
             document.write("2"+"2");    // El texto o número que pongamos "entre comillas" será un texto escrito en pantalla. En este ejemplo solo estamos escribiendo dos caracteres y forzando la concatenación, no opera (no calcula matemáticamente aunque estemos poniendo un +), solo está escribiendo dos seguido de dos, y veremos 22 en pantalla. Se puede poner coma (,) en lugar de '+', pero aquí estamos explicando por qué + no opera como una suma en este caso.
             document.write("<br>");
             document.write(2, 2);   // Aquí estamos concatenando dos números como si fueran caracteres, esto funciona igual que el ejemplo anterior pero sin las comillas. Al poner coma (,) estamos concateando los 2 números, así que solo escribe 22 en pantalla. Si en lugar de la coma (,) pusiéramos el '+' entonces entraría la operación y haría la suma de 2+2=4.
+            document.write("<br>");
+            document.write("10"/"2");   // DIVISIÓN FUNCIONAL "PERO MAL ESCRITA" (NO ES LA FORMA CORRECTA): El operador '/' es una división, es decir, dividimos 10 entre 2, resultado es 5.
+            document.write("<br>");
+            document.write(10/2);   // MULTIPLIACIÓN BIEN ESCRITA: El operador '/' es una división, es decir, dividimos 10 entre 2, resultado es 5.
         }
 
         probando("mundooooo (👉ﾟヮﾟ)👉");    // Llama a la FUNCION `probando`; el ARGUMENTO "hola mundo?" se asigna a `holaMundo`.
