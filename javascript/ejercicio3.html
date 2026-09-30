@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // IMPORTANTE - FUNCION: `probando`; PARAMETRO que recibe: `holaMundo`.
+        function probando(holaMundo){
+            // document.write escribe en la pagina; + une el texto con el valor de `holaMundo`.
+            // IMPORTANTE - `<br>` crea un salto de linea en el contenido HTML.
+            document.write("Hey, que pasa, ", holaMundo, "<br>");
+            document.write(1+2);   // Aquí estamos sumando uno más dos, podemos ponerlo como: 1 + 2 o 1+2 (sin espacios), funcionará igual.
+            document.write("<br>");
+            document.write("2"+"2");    // Aquí solo estamos escribiendo dos caracteres y fuerza la concatenación, no opera, es decir, está escribiendo dos seguido de dos, y veremos 22 en pantalla.
+            document.write("<br>");
+            document.write("2"*"2"+"<BR>"); /* Aunque escribo el número como si fuera un caracter, al meter un oeprando matemático ve que el caracter es un número, lo convierte a número y opera, peor aún así está mal escrito. */
+            document.write(2*2);    // Aquí estaoms multiplicando dos por dos, aquí si está bien escrito.
+            document.write("<br>");
+            document.write(2, 2);   // Aquí estamos concatenando dos números, como si fueran caracteres.
+        }
+
+        probando("hola mundo?");    // Llama a la FUNCION `probando`; el ARGUMENTO "hola mundo?" se asigna a `holaMundo`.
+        </script>
+    
+    <script>
+        // Escribe dos saltos de linea (`<br>`) para separar los ejercicios.
+        document.write("<br>");
+        document.write("<br>");
+    </script>
+
+</body>
+</html> 
+
+
