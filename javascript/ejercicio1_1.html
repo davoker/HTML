@@ -43,7 +43,6 @@
     document.write("Total: " + total + "€<br>");
     document.write("<br>");
     document.write("<hr>");
-    document.write("<br>");
 
     // Ejercicio 3: Cálculo de edad.
     // Declaración de varibles.
@@ -54,13 +53,34 @@
 
     // Calculamos la edad año actual - año nacimiento.
     let edad2 = anioActual - anioNacimiento;
+
+    document.write("<h2>Ejercicio 3</h2>");
     document.write(nombre1 + " nació en " + anioNacimiento + " y tiene aproximadamente " + edad2 + " años.<br>");
-        document.write("<br>");
-        document.write("<hr>");
-        document.write("<br>");
+    document.write("<br>");
+    document.write("<hr>");
     
 
     // Ejercicio 4: Cálculo de precio.
+    // Declaración de varibles.
+
+    let producto1 = "Monitor";
+    let precio1 = 200;
+    let descuento = 15;
+    //Calculamos cuanto dinero representa 15% de descuento.
+    let cantidadDescontada = precio1*descuento/100;
+    // Restamos el descuento al precio original.
+    let precioFinal = precio1 - cantidadDescontada;
+
+    document.write("<h2>Ejercicio 4</h2>");
+    document.write("Producto: " + producto1 + "<br>");
+    document.write("Precio original: " + precio1 + " EUR<br>");
+    document.write("Descuento: " + descuento + " %<br>");
+    document.write("Cantidad descontada: " + cantidadDescontada + " EUR<br>");
+    document.write("Precio final: " + precioFinal + "€<br>");
+    document.write("<br>");
+    document.write("<hr>");
+
+    // Ejercicio 5: Cálculo de precio.
     // Declaración de varibles.
 
 </script>

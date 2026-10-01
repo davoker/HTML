@@ -14,3 +14,10 @@ Gemini -> Enlace a la página de creación de APIs de gemini.google.com:
 
 https://aistudio.google.com/app/api-keys?project=gen-lang-client-0445469545
 
+Nvidia -> Enlace a la página de creación de APIs de nvidia.com:
+
+https://build.nvidia.com/settings/api-keys
+
+Mistral -> Enlace a la página de creación de APIs de mistral.ai:
+
+https://admin.mistral.ai/organization/api-keys
