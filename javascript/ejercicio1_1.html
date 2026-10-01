@@ -40,7 +40,7 @@
     document.write("Producto: " + producto + "<br>");
     document.write("Precio: " + precio + "<br>");
     document.write("Cantidad: " + cantidad + "<br>");
-    document.write("Total: " + total + "€<br>");
+    document.write("<STRONG>Total: " + total + " €</STRONG><br>");
     document.write("<br>");
     document.write("<hr>");
 
@@ -76,12 +76,38 @@
     document.write("Precio original: " + precio1 + " EUR<br>");
     document.write("Descuento: " + descuento + " %<br>");
     document.write("Cantidad descontada: " + cantidadDescontada + " EUR<br>");
-    document.write("Precio final: " + precioFinal + "€<br>");
+    document.write("<STRONG>Precio final: " + precioFinal + " €</STRONG><br>");
     document.write("<br>");
     document.write("<hr>");
 
     // Ejercicio 5: Cálculo de precio.
     // Declaración de varibles.
+
+    document.write("<h2>Ejercicio 5</h2>");
+
+    let producto2 = "Portatil";
+    let precio2 = 650;
+    let cantidad2 = 2;
+    let descuento2 = 10;
+    let gastosEnvio = 15;
+
+    // Calculamos subtotal.
+    let subtotal15 = precio2*cantidad2;
+    let cantidadDescontada2 = subtotal15*descuento2/100;
+    let precioConDescuento = subtotal15 - cantidadDescontada2;
+    let precioFinal15 = precioConDescuento + gastosEnvio;
+
+    document.write("Producto: " + producto2 + "<br>");
+    document.write("Precio unidad: " + precio2 + " €<br>");
+    document.write("Cantidad: " + cantidad2 + "<br>");
+    document.write("Subtotal: " + subtotal15 + " €<br>");
+    document.write("Descuento: " + descuento2 + " %<br>");
+    document.write("Descuento aplicado: " + cantidadDescontada2 + " €<br>");
+    document.write("Gastos de envío: " + gastosEnvio + " €<br>");
+    document.write("<STRONG>Precio final: " + precioFinal15 + " €</STRONG><br>");
+    document.write("<br>");
+    document.write("<hr>");
+
 
 </script>
 
