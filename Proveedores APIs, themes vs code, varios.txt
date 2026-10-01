@@ -1,3 +1,5 @@
+Proveedores APIs de IAs:
+
 z.ai -> Enlace a la página de creación de APIs de z.ai:
 
 https://z.ai/manage-apikey/apikey-list
@@ -21,3 +23,10 @@ https://build.nvidia.com/settings/api-keys
 Mistral -> Enlace a la página de creación de APIs de mistral.ai:
 
 https://admin.mistral.ai/organization/api-keys
+
+
+Themes para VS Code (para probar e instalar sin me gustan):
+
+One monokai theme
+Atom One Dark theme
+Github Themes
