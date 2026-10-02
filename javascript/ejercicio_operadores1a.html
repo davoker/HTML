@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+<script>
+
+5 == "5"; // == compara solo el valor. Como 5 y "5" representan el mismo número, da true.
+5 === "5"; // === compara valor y tipo. Aquí 5 es número y "5" es texto, así que da false.
+5 === 5; // Aquí ambos son números, así que da true.
+
+let edad = 25; // Creamos una variable llamada edad y le damos el valor 25.
+edad += 1; // Le suma 1 a la variable edad. Equivale a edad = edad + 1.
+
+let edad2 = 25; // Creamos otra variable llamada edad2 con valor 25.
+edad++; // Incrementa en 1 la variable edad. Es otra forma de hacer edad = edad + 1.
+
+</script>
+
+    <script>
+
+        // Esto pide un número y dice si es par o impar.
+
+        let numero = prompt("Ingrese un número");   // Creamos una variable llamada "numero" y pedimos al usuario que escriba un número.
+
+        if(numero %2 === 0) {   // Si el resto de dividir numero entre 2 es 0, entonces es par.
+            alert("El número es par");  // Si la condición es verdadera, muestra este mensaje.
+        } else {
+            alert("El número es impar");    // Si la condición no se cumple, muestra este otro mensaje.
+        }
+
+        // Este programa pide una contraseña y comprueba si es la correcta.
+
+        let contrasena = prompt(" Ingresa tu contraseña");  // Creamos la variable "contrasena" y pedimos al usuario que la escriba.
+
+        // Si la contraseña escrita es exactamente "1234", se permite el acceso, si no, se deniega el acceso.
+        if(contrasena === "1234"){
+            alert("Acceso permitido");  // Mensaje si la contraseña es correcta.
+        } else {
+            alert("Acceso denegado");   // Mensaje si la contraseña es incorrecta.
+        }
+
+    </script>
+
+</body>
+
+</html>
