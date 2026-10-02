@@ -1,38 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
-<script>
 
-// Ejercicio 1 Salida
-// Creamos una función llamada 'saludar', esta función on recibe ningún parámetro.
-function saludar(){
-    document.write("Hola, soy un programador.<br>");
-}
+    <script>
 
-// Llamamos a la función para que se ejecute.
-saludar();
-document.write("<br>");
-document.write("<hr>");
+        // Ejercicio 1 Salida
+        // Creamos una función llamada 'saludar', esta función on recibe ningún parámetro.
+        function saludar() {
+            document.write("Hola, soy un programador, le digo a la IA lo que tiene que hacer<br>");
+        }
+        function saludar2() {
+            document.write(" y luego yo digo que lo hice yo, pero no digas nada (👉ﾟヮﾟ)👉<br>");
+        }
 
-// Ejercicio 2 Mostrar un nombre.
-// Creamos una función llamada 'mostrarnombre', la función recibe un parámetro llamado 'nombre', el parámetro permite enviar un dato a la función.
-function mostrarNombre(nombre){
-    document.write("Hola " + nombre + "!<br>");
-}
+        // Llamamos a la función para que se ejecute.
+        saludar();
+        saludar2();
+        document.write("<br>");
+        document.write("<hr>");
 
-mostrarNombre("David");
-document.write("<br>");
-document.write("<hr>");
+        // Ejercicio 2 Mostrar un nombre.
+        // Creamos una función llamada 'mostrarnombre', la función recibe un parámetro llamado 'nombre', el parámetro permite enviar un dato a la función.
+        function mostrarNombre(nombre) {
+            document.write("Hola " + nombre + "!<br>");
+        }
 
+        mostrarNombre("David");
+        document.write("<br>");
+        document.write("<hr>");
 
+        // Ejercicio 3 Sumar dos números.
+        // Creamos una función llamada sumar que recibirá dos parámetros.
+        function sumar(num1, num2) {
+            let resultado = num1 + num2;
+            document.write("La suma es: " + resultado + "<br>");
+        }
+        //llamamos a la función.
+        sumar(7,8);
+        document.write("<br>");
+        document.write("<hr>");
 
-</script>
+        // Ejercicio 4 Calcular el doble.
+        // Creamos una función que recibe un número como parámetro y nos tiene que devolver el doble.
+
+        function doble(num){
+            return num*2;
+        }
+
+        // Podemos llamar a la funcioón doble, enviar un número, la función nos devolverá el doble de ese número y podemos gaurdar el resultado es otra variable.
+        let resultadoDoble = doble(8);
+        document.write("El doble de 8 es: " + resultadoDoble + "<br>");
+        document.write("<br>");
+        document.write("<hr>");
+
+        // Ejercicio 5 Calcular precio total.
+        // Creamos una función que reciba dos parámetros y que haga el cálculo de la operación y nos devuelva el resultado.
+        function calcularTotal(precio, cantidad){
+            // Multiplicaoms el precio por la cantidad.
+            let total = precio*cantidad;
+            // Devolvemos resultado.
+            return total;
+        }
+        // Creamos las variables con los datos.
+        let precio = 20;
+        let cantidad = 3;
+
+        // Llamamos a la función, la función hará el cálculo y guardamos el resultado.
+        
+
+    </script>
 
 </body>
+
 </html>

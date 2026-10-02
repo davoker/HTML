@@ -1,115 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
-<script>
-    // Crea una variable llamada nombre y guarda dentro el texto laura.
-    let nombre = "Laura";
 
-    // Creamos una variable numéria paraguardar la edad.
-    let edad = 25;
+    <script>
+        // Crea una variable llamada nombre y guarda dentro el texto laura.
+        let nombre = "Laura";
 
-    // Creamos una variable para guardar la ciudad.
-    let ciudad = "Gijón";
+        // Creamos una variable numéria paraguardar la edad.
+        let edad = 25;
 
-    // document.write() nos permite escribir contenido directamente dentro del documento html.
-    document.write("<h2>Ejercicio 1</h2>");
-    // Vamos a hacer una concatenación del operador +, que sirve para unir texto y variables.
-    document.write("Nombre: " + nombre + "<br>");
-    document.write("Edad: " + edad + "<br>");
-    document.write("Ciudad: " + ciudad + "<br>");
-    document.write("<br>");
-    document.write("<hr>");
+        // Creamos una variable para guardar la ciudad.
+        let ciudad = "Gijón";
 
-    // Ejercicio 2: Datos de un producto.
-    // Declaración de varibles.
+        // document.write() nos permite escribir contenido directamente dentro del documento html.
+        document.write("<h2>Ejercicio 1</h2>");
+        // Vamos a hacer una concatenación del operador +, que sirve para unir texto y variables.
+        document.write("Nombre: " + nombre + "<br>");
+        document.write("Edad: " + edad + "<br>");
+        document.write("Ciudad: " + ciudad + "<br>");
+        document.write("<br>");
+        document.write("<hr>");
 
-    let producto = "Cerebro Hackeado para estudios";
-    let precio = 150;
-    let cantidad = 3;
+        // Ejercicio 2: Datos de un producto.
+        // Declaración de varibles.
 
-    // Creamos una variable llamada total para multiplicador precio por cantidad.
-    let total = precio*cantidad;
+        let producto = "Cerebro Hackeado para estudios";
+        let precio = 150;
+        let cantidad = 3;
 
-    document.write("<h2>Ejercicio 2</h2>");
-    document.write("Producto: " + producto + "<br>");
-    document.write("Precio: " + precio + "<br>");
-    document.write("Cantidad: " + cantidad + "<br>");
-    document.write("<STRONG>Total: " + total + " €</STRONG><br>");
-    document.write("<br>");
-    document.write("<hr>");
+        // Creamos una variable llamada total para multiplicador precio por cantidad.
+        let total = precio * cantidad;
 
-    // Ejercicio 3: Cálculo de edad.
-    // Declaración de varibles.
+        document.write("<h2>Ejercicio 2</h2>");
+        document.write("Producto: " + producto + "<br>");
+        document.write("Precio: " + precio + "<br>");
+        document.write("Cantidad: " + cantidad + "<br>");
+        document.write("<STRONG>Total: " + total + " €</STRONG><br>");
+        document.write("<br>");
+        document.write("<hr>");
 
-    let nombre1 = "David";
-    let anioNacimiento = 1981;
-    let anioActual = 2026;
+        // Ejercicio 3: Cálculo de edad.
+        // Declaración de varibles.
 
-    // Calculamos la edad año actual - año nacimiento.
-    let edad2 = anioActual - anioNacimiento;
+        let nombre1 = "David";
+        let anioNacimiento = 1981;
+        let anioActual = 2026;
 
-    document.write("<h2>Ejercicio 3</h2>");
-    document.write(nombre1 + " nació en " + anioNacimiento + " y tiene aproximadamente " + edad2 + " años.<br>");
-    document.write("<br>");
-    document.write("<hr>");
-    
+        // Calculamos la edad año actual - año nacimiento.
+        let edad2 = anioActual - anioNacimiento;
 
-    // Ejercicio 4: Cálculo de precio.
-    // Declaración de varibles.
-
-    let producto1 = "Monitor";
-    let precio1 = 200;
-    let descuento = 15;
-    //Calculamos cuanto dinero representa 15% de descuento.
-    let cantidadDescontada = precio1*descuento/100;
-    // Restamos el descuento al precio original.
-    let precioFinal = precio1 - cantidadDescontada;
-
-    document.write("<h2>Ejercicio 4</h2>");
-    document.write("Producto: " + producto1 + "<br>");
-    document.write("Precio original: " + precio1 + " EUR<br>");
-    document.write("Descuento: " + descuento + " %<br>");
-    document.write("Cantidad descontada: " + cantidadDescontada + " EUR<br>");
-    document.write("<STRONG>Precio final: " + precioFinal + " €</STRONG><br>");
-    document.write("<br>");
-    document.write("<hr>");
-
-    // Ejercicio 5: Cálculo de precio.
-    // Declaración de varibles.
-
-    document.write("<h2>Ejercicio 5</h2>");
-
-    let producto2 = "Portatil";
-    let precio2 = 650;
-    let cantidad2 = 2;
-    let descuento2 = 10;
-    let gastosEnvio = 15;
-
-    // Calculamos subtotal.
-    let subtotal15 = precio2*cantidad2;
-    let cantidadDescontada2 = subtotal15*descuento2/100;
-    let precioConDescuento = subtotal15 - cantidadDescontada2;
-    let precioFinal15 = precioConDescuento + gastosEnvio;
-
-    document.write("Producto: " + producto2 + "<br>");
-    document.write("Precio unidad: " + precio2 + " €<br>");
-    document.write("Cantidad: " + cantidad2 + "<br>");
-    document.write("Subtotal: " + subtotal15 + " €<br>");
-    document.write("Descuento: " + descuento2 + " %<br>");
-    document.write("Descuento aplicado: " + cantidadDescontada2 + " €<br>");
-    document.write("Gastos de envío: " + gastosEnvio + " €<br>");
-    document.write("<STRONG>Precio final: " + precioFinal15 + " €</STRONG><br>");
-    document.write("<br>");
-    document.write("<hr>");
+        document.write("<h2>Ejercicio 3</h2>");
+        document.write(nombre1 + " nació en " + anioNacimiento + " y tiene aproximadamente " + edad2 + " años.<br>");
+        document.write("<br>");
+        document.write("<hr>");
 
 
-</script>
+        // Ejercicio 4: Cálculo de precio.
+        // Declaración de varibles.
+
+        let producto1 = "Monitor";
+        let precio1 = 200;
+        let descuento = 15;
+        //Calculamos cuanto dinero representa 15% de descuento.
+        let cantidadDescontada = precio1 * descuento / 100;
+        // Restamos el descuento al precio original.
+        let precioFinal = precio1 - cantidadDescontada;
+
+        document.write("<h2>Ejercicio 4</h2>");
+        document.write("Producto: " + producto1 + "<br>");
+        document.write("Precio original: " + precio1 + " EUR<br>");
+        document.write("Descuento: " + descuento + " %<br>");
+        document.write("Cantidad descontada: " + cantidadDescontada + " EUR<br>");
+        document.write("<STRONG>Precio final: " + precioFinal + " €</STRONG><br>");
+        document.write("<br>");
+        document.write("<hr>");
+
+        // Ejercicio 5: Cálculo de precio.
+        // Declaración de varibles.
+
+        document.write("<h2>Ejercicio 5</h2>");
+
+        let producto2 = "Portatil";
+        let precio2 = 650;
+        let cantidad2 = 2;
+        let descuento2 = 10;
+        let gastosEnvio = 15;
+
+        // Calculamos subtotal.
+        let subtotal15 = precio2 * cantidad2;
+        let cantidadDescontada2 = subtotal15 * descuento2 / 100;
+        let precioConDescuento = subtotal15 - cantidadDescontada2;
+        let precioFinal15 = precioConDescuento + gastosEnvio;
+
+        document.write("Producto: " + producto2 + "<br>");
+        document.write("Precio unidad: " + precio2 + " €<br>");
+        document.write("Cantidad: " + cantidad2 + "<br>");
+        document.write("Subtotal: " + subtotal15 + " €<br>");
+        document.write("Descuento: " + descuento2 + " %<br>");
+        document.write("Descuento aplicado: " + cantidadDescontada2 + " €<br>");
+        document.write("Gastos de envío: " + gastosEnvio + " €<br>");
+        document.write("<STRONG>Precio final: " + precioFinal15 + " €</STRONG><br>");
+        document.write("<br>");
+        document.write("<hr>");
+
+
+    </script>
 
 </body>
+
 </html>
