@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- dgf -->
+
+<!-- Crea una web que tenga un botón con el texto "Pulsa aquí", cuando el usuario haga click sobre el botón debe aparecer debajo el mensaje "Has hecho click en el botón", utiliza el evento click. -->
+    <button id="boton">Pulsa aquí</button>
+
+<!-- Aquí parece el mensaje -->
+    <p id="mensaje"></p>
+
+
+<script>
+
+// Guardamos el botón en una variable
+let boton = document.getElementById("boton");
+
+// Guardamos el mensaje en una variable
+let mensaje = document.getElementById("mensaje");
+
+// Cuando el usuario haga click en el botón, se ejecuta la siguiente función
+boton.addEventListener("click", function() {
+    // Mostramos el mensaje en el párrafo
+    mensaje.innerHTML = "Has hecho click en el botón";
+});
+
+</script>
+
+
+</body>
+</html>
