@@ -13,13 +13,13 @@
 
 function evaluarConductor() { // Define una función que contiene la lógica del programa
     let edad = Number(prompt("Ingrese su edad")); // Pide la edad y la convierte a número para poder compararla
-    let carnet = prompt("¿Tiene un carnet de conducir?").trim().toLowerCase(); // Pide si tiene carnet, quita espacios y lo convierte a minúsculas
 
-// Si la edad es menor de 18 muestra el mensaje "no puedes conducir"
-    if (edad < 18) {
-        alert("No puedes conducir");
-        return; // Sale de la función y termina el programa.
+    if (edad < 18) { // Si la edad es menor de 18
+        alert("No puedes conducir"); // Muestra el mensaje de que no puede conducir
+        return; // Sale de la función y termina el programa
     }
+
+    let carnet = prompt("¿Tiene un carnet de conducir?").trim().toLowerCase(); // Pide si tiene carnet, quita espacios y lo convierte a minúsculas
 
     if (carnet !== "si") { // Si la respuesta del carnet NO ES "si"
         alert("Necesitas tener carnet"); // Muestra el mensaje de que necesita carnet

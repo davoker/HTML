@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluador de conductor</title>
+
+    <style>
+        /* ===== ESTILO GENERAL DE LA PÁGINA ===== */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #6a11cb);
+            color: #fff;
+        }
+
+        /* ===== TARJETA PRINCIPAL ===== */
+        .tarjeta {
+            width: 100%;
+            max-width: 520px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 20px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            color: #24303f;
+        }
+
+        .cabecera {
+            background: linear-gradient(135deg, #ff8a3d, #e14b4b);
+            padding: 26px 28px;
+            text-align: center;
+        }
+
+        .cabecera h1 {
+            margin: 0;
+            font-size: 1.45rem;
+        }
+
+        .cabecera p {
+            margin: 6px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* ===== BARRA DE PROGRESO ===== */
+        .progreso {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 28px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .progreso li {
+            flex: 1;
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #9aa5b1;
+            position: relative;
+        }
+
+        /* El punto de cada paso */
+        .progreso li span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            margin: 0 auto 6px;
+            border-radius: 50%;
+            background: #dfe4ea;
+            color: #7b8794;
+            transition: 0.3s;
+        }
+
+        /* Paso actual */
+        .progreso li.actual span {
+            background: #e14b4b;
+            color: #fff;
+            transform: scale(1.15);
+        }
+
+        /* Paso ya completado */
+        .progreso li.hecho span {
+            background: #2ecc71;
+            color: #fff;
+        }
+
+        .barra {
+            height: 6px;
+            margin: 14px 28px 0;
+            background: #dfe4ea;
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .barra-relleno {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff8a3d, #e14b4b);
+            border-radius: 99px;
+            transition: width 0.4s ease;
+        }
+
+        /* ===== PASOS ===== */
+        .cuerpo {
+            padding: 26px 28px 28px;
+            min-height: 260px;
+        }
+
+        .paso {
+            display: none;
+        }
+
+        .paso.activo {
+            display: block;
+            animation: entrar 0.35s ease;
+        }
+
+        @keyframes entrar {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .paso h2 {
+            margin: 0 0 6px;
+            font-size: 1.15rem;
+        }
+
+        .paso .ayuda {
+            margin: 0 0 18px;
+            font-size: 0.88rem;
+            color: #66707d;
+        }
+
+        /* ===== CAMPOS Y BOTONES ===== */
+        input[type="number"] {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1.1rem;
+            border: 2px solid #dfe4ea;
+            border-radius: 12px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #e14b4b;
+        }
+
+        .botones-opcion {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .boton {
+            padding: 16px 18px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            background: #24303f;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+        }
+
+        .boton:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .boton:active {
+            transform: translateY(0);
+        }
+
+        .boton.si {
+            background: #2ecc71;
+        }
+
+        .boton.no {
+            background: #e14b4b;
+        }
+
+        /* ===== DESLIZADOR DE EXPERIENCIA ===== */
+        .valor-experiencia {
+            font-size: 2.6rem;
+            font-weight: 800;
+            text-align: center;
+            color: #e14b4b;
+            margin-bottom: 14px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            accent-color: #e14b4b;
+            cursor: pointer;
+        }
+
+        .escala {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #8b95a1;
+        }
+
+        /* ===== PIE CON BOTONES DE NAVEGACIÓN ===== */
+        .navegacion {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .boton-secundario {
+            background: #e6e9ee;
+            color: #4a5563;
+            font-weight: 600;
+        }
+
+        /* ===== MENSAJE DE ERROR ===== */
+        .error {
+            display: none;
+            margin-top: 12px;
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            background: #ffe9e9;
+            color: #c0392b;
+            border-left: 4px solid #e14b4b;
+            border-radius: 8px;
+        }
+
+        .error.visible {
+            display: block;
+            animation: temblar 0.35s;
+        }
+
+        @keyframes temblar {
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* ===== PANTALLA DE RESULTADO ===== */
+        .resultado {
+            text-align: center;
+            padding: 34px 20px;
+            border-radius: 16px;
+            background: #f1f4f8;
+        }
+
+        .resultado .icono {
+            font-size: 3.4rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .resultado h2 {
+            margin: 0 0 8px;
+            font-size: 1.4rem;
+        }
+
+        .resultado p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #66707d;
+        }
+
+        .resultado.malo {
+            background: #ffeaea;
+            color: #a93226;
+        }
+
+        .resultado.medio {
+            background: #fff6e0;
+            color: #9a6700;
+        }
+
+        .resultado.bueno {
+            background: #e8fbf1;
+            color: #1e7e46;
+        }
+
+        .resultado.neutro {
+            background: #eaf0ff;
+            color: #274b8f;
+        }
+
+        .resumen {
+            margin: 22px 0 0;
+            padding: 14px;
+            font-size: 0.85rem;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            color: #4a5563;
+        }
+
+        .resumen div {
+            margin: 4px 0;
+        }
+
+        .reiniciar {
+            width: 100%;
+            margin-top: 22px;
+        }
+
+        @media (max-width: 420px) {
+            .botones-opcion {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="tarjeta">
+
+        <header class="cabecera">
+            <h1>🚗 Evaluador de conductor</h1>
+            <p>Responde paso a paso y descubre tu categoría</p>
+        </header>
+
+        <!-- Barra que indica en qué paso estamos -->
+        <ol class="progreso" id="progreso">
+            <li class="actual"><span>1</span>Edad</li>
+            <li><span>2</span>Carnet</li>
+            <li><span>3</span>Experiencia</li>
+            <li><span>4</span>Resultado</li>
+        </ol>
+        <div class="barra">
+            <div class="barra-relleno" id="barraRelleno"></div>
+        </div>
+
+        <div class="cuerpo">
+
+            <!-- PASO 1: EDAD -->
+            <section class="paso activo" id="paso1">
+                <h2>¿Cuántos años tienes?</h2>
+                <p class="ayuda">La edad mínima para conducir son los 18 años.</p>
+
+                <input type="number" id="edad" inputmode="numeric" placeholder="Ej: 21" min="0" max="120">
+                <p class="error" id="errorEdad">Por favor, escribe un número válido.</p>
+
+                <div class="navegacion">
+                    <button class="boton" data-siguiente="2">Continuar →</button>
+                </div>
+            </section>
+
+            <!-- PASO 2: CARNET -->
+            <section class="paso" id="paso2">
+                <h2>¿Tienes carnet de conducir?</h2>
+                <p class="ayuda">Necesitas el permiso oficial para poder conducir.</p>
+
+                <div class="botones-opcion">
+                    <button class="boton si" id="btnSi">Sí, tengo carnet</button>
+                    <button class="boton no" id="btnNo">No tengo carnet</button>
+                </div>
+
+                <div class="navegacion">
+                    <button class="boton boton-secundario" data-atras="1">← Atrás</button>
+                </div>
+            </section>
+
+            <!-- PASO 3: AÑOS DE EXPERIENCIA -->
+            <section class="paso" id="paso3">
+                <h2>¿Cuántos años llevas conduciendo?</h2>
+                <p class="ayuda">Mueve el deslizador para indicar tu experiencia.</p>
+
+                <div class="valor-experiencia">
+                    <span id="valorAnios">0</span> <span id="etiquetaAnios">años</span>
+                </div>
+                <input type="range" id="anios" min="0" max="40" value="0" step="1">
+
+                <div class="escala">
+                    <span>0</span>
+                    <span>2 principiante</span>
+                    <span>5 media</span>
+                    <span>40</span>
+                </div>
+
+                <div class="navegacion">
+                    <button class="boton boton-secundario" data-atras="2">← Atrás</button>
+                    <button class="boton" id="btnResultado">Ver resultado →</button>
+                </div>
+            </section>
+
+            <!-- PASO 4: RESULTADO -->
+            <section class="paso" id="paso4">
+                <div class="resultado" id="cajaResultado">
+                    <span class="icono" id="iconoResultado">🚦</span>
+                    <h2 id="tituloResultado"></h2>
+                    <p id="textoResultado"></p>
+
+                    <div class="resumen">
+                        <div><strong>Edad:</strong> <span id="resumenEdad"></span></div>
+                        <div><strong>Carnet:</strong> <span id="resumenCarnet"></span></div>
+                        <div><strong>Experiencia:</strong> <span id="resumenAnios"></span></div>
+                    </div>
+                </div>
+
+                <button class="boton reiniciar" id="btnReiniciar">↻ Empezar de nuevo</button>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+
+        // ===== VARIABLES QUE GUARDAN LAS RESPUESTAS DEL USUARIO =====
+        let edad = null;   // Edad introducida en el paso 1
+        let carnet = null; // true si tiene carnet, false si no (se decide en el paso 2)
+        let anios = null;  // Años de experiencia (null significa que todavía no se ha preguntado)
+
+        // ===== FUNCIÓN PARA MOSTRAR UN PASO Y OCULTAR LOS DEMÁS =====
+        function mostrarPaso(numero) {
+            document.querySelectorAll(".paso").forEach(paso => {
+                paso.classList.remove("activo");           // Oculta todos los pasos
+            });
+            document.getElementById("paso" + numero).classList.add("activo"); // Muestra el pedido
+
+            // Actualiza los puntos de la barra de progreso
+            document.querySelectorAll("#progreso li").forEach((li, indice) => {
+                li.classList.remove("actual", "hecho");
+                if (indice + 1 < numero) {
+                    li.classList.add("hecho");            // Los anteriores quedan en verde
+                } else if (indice + 1 === numero) {
+                    li.classList.add("actual");           // El actual queda en rojo
+                }
+            });
+
+            // Alarga la barra de progreso
+            document.getElementById("barraRelleno").style.width = ((numero - 1) / 3) * 100 + "%";
+        }
+
+        // ===== FUNCIÓN QUE MUESTRA UN MENSAJE DE ERROR =====
+        function mostrarError(idError, visible) {
+            document.getElementById(idError).classList.toggle("visible", visible);
+        }
+
+        // ===== FUNCIÓN PRINCIPAL: HACE TODAS LAS COMPROBACIONES =====
+        // La idea es que el programa se rompa (termine) en cuanto encuentra una respuesta
+        // que impide conducir, y en ese caso avise siempre de lo mismo: "No puedes conducir"
+        // 1. Menos de 18 años            -> BLOQUEA
+        // 2. 18 años o más sin carnet    -> BLOQUEA
+        // 3. Con carnet: menos de 2 años -> principiante, entre 2 y 5 -> media, más de 5 -> experimentado
+        function mostrarResultado() {
+            let icono = "";
+            let titulo = "";
+            let texto = "";
+            let clase = "";
+
+            if (edad < 18 || carnet === false) { // Si es menor de 18 años O no tiene carnet
+                // Las dos condiciones bloquean la conducción, así que el mensaje es el mismo
+                icono = "🚫";
+                titulo = "No puedes conducir";
+                texto = (edad < 18)
+                    ? "Necesitas tener al menos 18 años para conducir."
+                    : "Necesitas tener el carnet de conducir para poder hacerlo.";
+                clase = "malo";
+            } else if (anios < 2) { // Con carnet y menos de 2 años de experiencia
+                icono = "🌱";
+                titulo = "Conductor principiante";
+                texto = "¡Sigue practicando! Cada kilómetro suma experiencia.";
+                clase = "neutro";
+            } else if (anios <= 5) { // Con carnet y entre 2 y 5 años de experiencia
+                icono = "🚙";
+                titulo = "Conductor con experiencia media";
+                texto = "Ya tienes un buen dominio de la carretera.";
+                clase = "bueno";
+            } else { // Con carnet y más de 5 años de experiencia
+                icono = "🏆";
+                titulo = "Conductor experimentado";
+                texto = "¡Más de 5 años al volante! Eres un experto.";
+                clase = "bueno";
+            }
+
+            // Pinta la tarjeta del resultado
+            const caja = document.getElementById("cajaResultado");
+            caja.className = "resultado " + clase;
+            document.getElementById("iconoResultado").textContent = icono;
+            document.getElementById("tituloResultado").textContent = titulo;
+            document.getElementById("textoResultado").textContent = texto;
+
+            // Muestra un resumen con los datos introducidos
+            // Si una pregunta no se ha hecho (porque el programa terminó antes), se indica
+            document.getElementById("resumenEdad").textContent = edad + (edad === 1 ? " año" : " años");
+            document.getElementById("resumenCarnet").textContent = carnet === null ? "No preguntada" : (carnet ? "Sí" : "No");
+            document.getElementById("resumenAnios").textContent = anios === null ? "No preguntada" : anios + (anios === 1 ? " año" : " años");
+
+            mostrarPaso(4); // Pasa al último paso para mostrar el veredicto
+        }
+
+        // ===== PASO 1: LEER LA EDAD =====
+        document.querySelector('[data-siguiente="2"]').addEventListener("click", () => {
+            const valor = document.getElementById("edad").value; // Lee lo escrito
+            edad = Number(valor); // Lo convierte a número
+
+            // Comprueba que sea un número real, no vacío ni negativo
+            if (valor.trim() === "" || Number.isNaN(edad) || edad < 0) {
+                mostrarError("errorEdad", true);
+                return; // No deja avanzar hasta que la respuesta sea válida
+            }
+
+            mostrarError("errorEdad", false);
+
+            if (edad < 18) { // Si es menor de 18, el programa se detiene aquí (no pregunta nada más)
+                mostrarResultado();
+                return;
+            }
+
+            mostrarPaso(2); // Pasa a la pregunta del carnet
+        });
+
+        // ===== PASO 2: CARNET SÍ / NO =====
+        // Un solo botón "sí" avanza al paso 3; el "no" va directo al resultado
+        document.getElementById("btnSi").addEventListener("click", () => {
+            carnet = true;
+            mostrarPaso(3);
+        });
+
+        document.getElementById("btnNo").addEventListener("click", () => {
+            carnet = false;
+            mostrarResultado(); // Sin carnet no tiene sentido preguntar la experiencia
+        });
+
+        // ===== PASO 3: AÑOS DE EXPERIENCIA (DESLIZADOR) =====
+        const deslizador = document.getElementById("anios");
+
+        // Función auxiliar: escribe el número de años y pone "año" o "años" en singular o plural
+        function actualizarTextoAnios(valor) {
+            document.getElementById("valorAnios").textContent = valor;
+            document.getElementById("etiquetaAnios").textContent = valor === 1 ? "año" : "años";
+        }
+
+        deslizador.addEventListener("input", () => {
+            // Cada vez que se mueve, actualiza el número grande de arriba
+            actualizarTextoAnios(Number(deslizador.value));
+        });
+
+        document.getElementById("btnResultado").addEventListener("click", () => {
+            anios = Number(deslizador.value); // Guarda los años y lanza el veredicto
+            mostrarResultado();
+        });
+
+        // ===== BOTONES DE "ATRÁS" =====
+        document.querySelectorAll("[data-atras]").forEach(boton => {
+            boton.addEventListener("click", () => {
+                mostrarPaso(Number(boton.dataset.atras)); // Vuelve al paso indicado
+            });
+        });
+
+        // ===== BOTÓN DE REINICIAR =====
+        document.getElementById("btnReiniciar").addEventListener("click", () => {
+            edad = null;                 // Borra la edad
+            carnet = null;               // Borra la respuesta del carnet
+            anios = null;              // Borra los años de experiencia
+            deslizador.value = 0;        // Reinicia el control visual
+            actualizarTextoAnios(0);     // Vuelve a mostrar "0 años"
+            document.getElementById("edad").value = ""; // Vacía el campo de la edad
+            mostrarPaso(1);              // Vuelve al primer paso
+        });
+
+        // Permite confirmar con la tecla Intro dentro del campo de la edad
+        document.getElementById("edad").addEventListener("keydown", evento => {
+            if (evento.key === "Enter") {
+                document.querySelector('[data-siguiente="2"]').click();
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
