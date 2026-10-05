@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+
+// Crea un programa en js que pida al usuario la edad, si tiene carnet de conducir y cuantos años de experiencia tiene conduciendo. El programa debe indicar que si tiene menos de 18 años "no puedes conducir", y si tiene 18 años o más pero on tiene carnet indica que "necesitas tener carnet", si tiene carnet y menos de dos años de experiencia dirá "conductor principiante", si tiene carnet y entre dos y cinco años de experiencia dirá "conductor con experiencia media", si tiene carnet y más de 5 años de experiencia dirá "conductor experimentado".
+
+function evaluarConductor() { // Define una función que contiene la lógica del programa
+    let edad = Number(prompt("Ingrese su edad")); // Pide la edad y la convierte a número para poder compararla
+    let carnet = prompt("¿Tiene un carnet de conducir?").trim().toLowerCase(); // Pide si tiene carnet, quita espacios y lo convierte a minúsculas
+
+// Si la edad es menor de 18 muestra el mensaje "no puedes conducir"
+    if (edad < 18) {
+        alert("No puedes conducir");
+        return; // Sale de la función y termina el programa.
+    }
+
+    if (carnet !== "si") { // Si la respuesta del carnet NO ES "si"
+        alert("Necesitas tener carnet"); // Muestra el mensaje de que necesita carnet
+        return; // Sale de la función y no pregunta los años
+    }
+
+    let años = Number(prompt("¿Cuantos años de experiencia tiene conduciendo?")); // Pide los años de experiencia y los convierte a número
+
+    if (años < 2) { // Si tiene menos de 2 años
+        alert("Conductor principiante"); // Muestra que es conductor principiante
+    } else if (años >= 2 && años <= 5) { // Si tiene entre 2 y 5 años
+        alert("Conductor con experiencia media"); // Muestra que tiene experiencia media
+    } else if (años > 5) { // Si tiene más de 5 años
+        alert("Conductor experimentado"); // Muestra que es conductor experimentado
+    } else { // Si no entra en ninguna condición anterior
+        alert("Error"); // Muestra un mensaje de error
+    }
+}
+
+evaluarConductor(); // Ejecuta la función para empezar el programa
+
+
+
+</script>
+
+</body>
+</html>
