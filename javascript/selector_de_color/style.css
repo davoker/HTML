@@ -72,13 +72,13 @@ h1 {
     padding: 25px;
     border-radius: 30px;
     background-color: #ffb0f5;
-    border: 2px solid #d1d5db;
+    border: 2px solid #76adff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 10px 14px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 14px rgb(154, 197, 255);
 }
 
 #contenedor-texto p {
