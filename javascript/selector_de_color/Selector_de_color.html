@@ -8,17 +8,20 @@
 </head>
 <body>
 
+    <!-- Crea una web que permita al usuario cambiar de color de fondo y el color de texto del texto de un contenedor haciendo click sobre diferetes cajas de colores. La página debe incluir varias cajas de colores, rojo, verde, azul, amarillo y morado y un contenedor con varios párrafos de texto. Al hacer click sobre una de las cajas el fondo el fondo del contenedor debe debe cambiar al color selecccionado, el color del texto también debe cambiar para mantener una buena visibilidad. -->
+
     <h1>Selecciona un color para el contenedor</h1>
 
+<!-- Contenedor de las cajas de colores , el atributo data.gbcolor (y data-textcolor) almacenar información adicional sobre cada caja de color, sin necesidad de escirbir código extra en el css a JavaScript -->
     <div class="color-picker">
-        <div class="color-box selected" data-bgcolor="red" data-textcolor="white"></div>
+        <div class="color-box" data-bgcolor="red" data-textcolor="white"></div>
         <div class="color-box" data-bgcolor="green" data-textcolor="white"></div>
         <div class="color-box" data-bgcolor="blue" data-textcolor="white"></div>
         <div class="color-box" data-bgcolor="yellow" data-textcolor="black"></div>
-        <div class="color-box" data-bgcolor="orange" data-textcolor="black"></div>
         <div class="color-box" data-bgcolor="purple" data-textcolor="white"></div>
     </div>
 
+    <!-- Contenedor de texto que cambiará -->
     <div id="contenedor-texto">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         <p>Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
