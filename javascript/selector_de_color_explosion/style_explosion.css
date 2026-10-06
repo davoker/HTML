@@ -1,3 +1,17 @@
+/* ================================================================
+   SELECTOR DE COLOR - EXPLOSIÓN
+   ----------------------------------------------------------------
+   PARTE 1 → maquetación original (selector de color y contenedor)
+   PARTE 2 → motor visual de efectos (familias compartidas)
+   PARTE 3 → juego de ovnis (12 naves) + HUD + puntuación
+   Los efectos de clic/botón se GENERAN con JavaScript y usan las
+   reglas y keyframes de la PARTE 2.
+   ================================================================ */
+
+/* ================================================================
+   PARTE 1 - MAQUETACIÓN ORIGINAL
+   ================================================================ */
+
 body {
     font-family: Arial, sans-serif;
     background: #f3f4f6;
@@ -14,6 +28,7 @@ h1 {
     color: #1f2937;
 }
 
+/* Fila con las cajas de colores */
 .color-picker {
     display: flex;
     gap: 15px;
@@ -22,6 +37,7 @@ h1 {
     margin-bottom: 25px;
 }
 
+/* Cada caja de color (el color de fondo sale de data-bgcolor en el HTML) */
 .color-box {
     width: 60px;
     height: 60px;
@@ -36,6 +52,7 @@ h1 {
     transform: scale(1.05);
 }
 
+/* Caja seleccionada actualmente */
 .color-box.selected {
     border-color: #111827;
     transform: scale(1.08);
@@ -65,6 +82,7 @@ h1 {
     background-color: purple;
 }
 
+/* Contenedor de texto que cambia de color al pulsar una caja */
 #contenedor-texto {
     position: relative;
     width: 500px;
@@ -94,99 +112,511 @@ h1 {
     z-index: 1;
 }
 
-.explosion {
+/* ================================================================
+   PARTE 2 - MOTOR VISUAL DE EFECTOS
+   Cada efecto se crea en JavaScript como:
+       <div class="fx-cont fx-NOMBREFAMILIA"> ...hijos... </div>
+   El contenedor vive "fixed" justo en el punto del click y NO
+   recibe eventos (pointer-events: none) para no estorbar.
+   La duración llega en la variable --dur (ms).
+   ================================================================ */
+
+.fx-cont {
     position: fixed;
-    width: 20px;
-    height: 20px;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+    width: 0;
+    height: 0;
     z-index: 9999;
-    animation: flash-burst 0.9s ease-out forwards;
+    pointer-events: none;
 }
 
-.explosion::before {
-    content: "";
+/* ---------- 2.1 Nodo base "part" (partículas, gotas, discos...) ----------
+   Se usa en varias familias; cada familia le cambia el nombre de la
+   animación con una regla más específica (.fx-xxx .part). */
+.part {
     position: absolute;
-    inset: -60px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.5) 12%, var(--burst-color) 30%, rgba(255,180,0,0.7) 43%, rgba(255,100,0,0.2) 62%, transparent 75%);
-    animation: bloom 0.9s ease-out forwards;
+    left: 0;
+    top: 0;
+    width: var(--s, 10px);
+    height: var(--s, 10px);
+    background: var(--c, #fff);
+    transform: translate(-50%, -50%);
+    animation: chispa-vuelo var(--dur, 900ms) ease-out forwards;
 }
 
-.explosion::after {
+/* Formas de partícula (clip-path: así NO chocan con el transform
+   que mueve la animación) */
+.f-circulo   { border-radius: 50%; }
+.f-cuadrado  { border-radius: 3px; }
+.f-estrella  { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.f-triangulo { clip-path: polygon(50% 0%, 100% 100%, 0% 100%); }
+.f-rombo     { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+.f-corazon   { clip-path: polygon(50% 16%, 63% 2%, 82% 0%, 100% 24%, 100% 52%, 50% 100%, 0% 52%, 0% 24%, 18% 0%, 37% 2%); }
+
+/* Familia CHISPAS con gravedad (cae como chispas de fuego) */
+.fx-chispas.con-gravedad .part { animation-name: chispa-gravedad; }
+
+/* ---------- 2.2 Familia ANILLO (ondas expansivas) ---------- */
+.aro {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--size, 200px);
+    height: var(--size, 200px);
+    margin: calc(var(--size, 200px) / -2);   /* centra en el origen */
+    border: var(--grosor, 6px) solid var(--c, #fff);
+    border-radius: 50%;
+    opacity: 0;
+    animation: aro-onda var(--dur, 900ms) cubic-bezier(.2, .7, .3, 1) forwards;
+}
+.aro-cuadrado { border-radius: 18px; }
+
+/* ---------- 2.3 Familia SÍMBOLOS (emoji/letras lanzados) ---------- */
+.simbolo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: var(--sz, 26px);
+    line-height: 1;
+    color: var(--c, #fff);
+    text-shadow: 0 0 10px rgba(0, 0, 0, .35);
+    animation: simbolo-vuelo var(--dur, 900ms) ease-out forwards;
+}
+
+/* ---------- 2.4 Familia TEXTO (palabras estallando) ---------- */
+.palabra {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 900;
+    white-space: nowrap;
+    font-size: var(--sz, 44px);
+    color: var(--c, #fff);
+    text-shadow: 0 0 14px var(--c, #fff), 0 3px 0 rgba(0, 0, 0, .35);
+    animation: palabra-pop var(--dur, 900ms) cubic-bezier(.2, .9, .3, 1.35) forwards;
+}
+
+/* ---------- 2.5 Familia RAYOS (destellos radiales) ---------- */
+.rayo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--grosor, 8px);
+    height: var(--largo, 160px);
+    margin-left: calc(var(--grosor, 8px) / -2);
+    transform-origin: 50% 0;              /* gira sobre el punto del click */
+    background: linear-gradient(180deg, var(--c, #fff), transparent);
+    border-radius: var(--grosor, 8px);
+    opacity: 0;
+    animation: rayo-latir var(--dur, 800ms) ease-out forwards;
+}
+.fx-rayos.gira .rayo { animation-name: rayo-giro; }
+
+/* ---------- 2.6 Familia ESPIRAL ---------- */
+.espiral-p {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--s, 9px);
+    height: var(--s, 9px);
+    border-radius: 50%;
+    background: var(--c, #fff);
+    opacity: 0;
+    animation: espiral-vuelo var(--dur, 1100ms) linear forwards;
+}
+
+/* ---------- 2.7 Familia LLUVIA (cae desde arriba) ---------- */
+.fx-lluvia .part,
+.fx-lluvia .simbolo {
+    animation-name: gota-caida;
+    animation-timing-function: linear;
+}
+
+/* ---------- 2.8 Familia FUENTE (chorro con gravedad) ---------- */
+.fx-fuente .part { animation-name: fuente-vuelo; }
+
+/* ---------- 2.9 Familia HUMO (nubes suaves que ascienden) ---------- */
+.fx-humo .part {
+    animation-name: humo-subir;
+    background: radial-gradient(circle, var(--c, #bbb) 0%, transparent 72%);
+    filter: blur(2px);
+    border-radius: 50%;
+}
+
+/* ---------- 2.10 Familia DISCO (mancha que estalla) ---------- */
+.fx-disco .part {
+    animation-name: disco-pop;
+    border-radius: 50%;
+}
+
+/* ---------- 2.11 Familia ESTALLIDO (símbolo gigante central) ---------- */
+.central {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: var(--sz, 60px);
+    line-height: 1;
+    color: var(--c, #fff);
+    text-shadow: 0 0 30px var(--c, #fff);
+    animation: central-estallar var(--dur, 900ms) ease-out forwards;
+}
+
+/* ---------- 2.12 Familia CONFETI (papelitos que revolotean) ---------- */
+.fx-confeti .part {
+    height: var(--h, var(--s, 8px));
+    border-radius: 2px;
+    animation-name: confeti-vuelo;
+    animation-timing-function: ease-in;
+}
+
+/* ---------- 2.13 Familia ECO (eco del mismo símbolo, retardado) ---------- */
+.fx-eco .simbolo { text-shadow: 0 0 16px var(--c, #fff); }
+
+/* ================================================================
+   KEYFRAMES DE LAS FAMILIAS DE EFECTOS
+   ================================================================ */
+
+/* Chispas: vuelo radial con giro y desvanecido */
+@keyframes chispa-vuelo {
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))) scale(.25) rotate(240deg); }
+}
+
+/* Chispas con gravedad: suben un poco y caen */
+@keyframes chispa-gravedad {
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    30%  { opacity: 1; transform: translate(calc(-50% + var(--dx, 0px) * .5), calc(-50% - 55px)) scale(1); }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))) scale(.55); }
+}
+
+/* Anillo: onda que se expande y se desvanece */
+@keyframes aro-onda {
+    0%   { opacity: .95; transform: scale(.05); }
+    70%  { opacity: .75; }
+    100% { opacity: 0;   transform: scale(1.15); }
+}
+
+/* Símbolo: sale disparado con giro */
+@keyframes simbolo-vuelo {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(.3) rotate(0deg); }
+    15%  { opacity: 1; transform: translate(calc(-50% + var(--dx, 0px) * .25), calc(-50% + var(--dy, 0px) * .25)) scale(1.2) rotate(45deg); }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))) scale(.85) rotate(260deg); }
+}
+
+/* Palabra: aparece creciendo, vibra y se va (con desplazamiento
+   opcional --dx/--dy para el modo "radiante") */
+@keyframes palabra-pop {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(.15) rotate(-10deg); }
+    25%  { opacity: 1; transform: translate(-50%, -50%) scale(1.25) rotate(4deg); }
+    45%  { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(-2deg); }
+    75%  { opacity: 1; transform: translate(calc(-50% + var(--dx, 0px) * .4), calc(-50% + var(--dy, 0px) * .4)) scale(1.06); }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))) scale(1.45); }
+}
+
+/* Rayo: se extiende desde el centro y se apaga */
+@keyframes rayo-latir {
+    0%   { opacity: 0;   transform: rotate(var(--rot, 0deg)) scaleY(.05); }
+    20%  { opacity: 1; }
+    70%  { opacity: .9;  transform: rotate(var(--rot, 0deg)) scaleY(1); }
+    100% { opacity: 0;   transform: rotate(var(--rot, 0deg)) scaleY(1); }
+}
+
+/* Rayo con giro extra (familia "gira") */
+@keyframes rayo-giro {
+    0%   { opacity: 0; transform: rotate(var(--rot, 0deg)) scaleY(.05); }
+    25%  { opacity: 1; transform: rotate(calc(var(--rot, 0deg) + 45deg)) scaleY(.9); }
+    100% { opacity: 0; transform: rotate(calc(var(--rot, 0deg) + 170deg)) scaleY(1); }
+}
+
+/* Espiral: gira 540º mientras se aleja del centro */
+@keyframes espiral-vuelo {
+    0%   { opacity: 0; transform: rotate(var(--a, 0deg)) translateX(0) rotate(0deg) translate(-50%, -50%); }
+    12%  { opacity: 1; }
+    100% { opacity: 0; transform: rotate(calc(var(--a, 0deg) + 540deg)) translateX(var(--r, 120px)) rotate(-540deg) translate(-50%, -50%); }
+}
+
+/* Lluvia: cae desde arriba con algo de viento */
+@keyframes gota-caida {
+    0%   { opacity: 0; transform: translate(var(--x0, 0px), calc(-1 * var(--y, 150px))) translate(-50%, -50%); }
+    12%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--x1, 0px), 60px) translate(-50%, -50%); }
+}
+
+/* Fuente: chorro que sube y luego cae */
+@keyframes fuente-vuelo {
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    35%  { opacity: 1; transform: translate(calc(-50% + var(--ux, 0px)), calc(-50% - var(--uy, 80px))) scale(.95); }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 60px))) scale(.5); }
+}
+
+/* Humo: asciende, se agranda y se deshace */
+@keyframes humo-subir {
+    0%   { opacity: 0;   transform: translate(-50%, -50%) scale(.35); }
+    25%  { opacity: .75; }
+    100% { opacity: 0;   transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% - var(--up, 160px))) scale(2); }
+}
+
+/* Disco: mancha que se expande, da un rebote y revienta */
+@keyframes disco-pop {
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(0); }
+    55%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    70%  { opacity: 1; transform: translate(-50%, -50%) scale(1.14); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.3); }
+}
+
+/* Estallido central: símbolo gigante que crece, tiembla y se va */
+@keyframes central-estallar {
+    0%   { opacity: 0;   transform: translate(-50%, -50%) scale(.1) rotate(-14deg); }
+    25%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.3) rotate(6deg); }
+    45%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.05) rotate(-5deg); }
+    65%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.18) rotate(3deg); }
+    100% { opacity: 0;   transform: translate(-50%, -50%) scale(2.1) rotate(0deg); }
+}
+
+/* Confeti: sube un poco, revolotea cayendo con giro */
+@keyframes confeti-vuelo {
+    0%   { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
+    40%  { opacity: 1; transform: translate(calc(-50% + var(--dx, 0px) * .7), calc(-50% - 70px)) rotate(calc(var(--r, 180deg) * .4)); }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 100px))) rotate(var(--r, 180deg)); }
+}
+
+/* ================================================================
+   PARTE 3 - JUEGO DE OVNIS, HUD Y PUNTUACIÓN
+   ================================================================ */
+
+/* --- 3.1 HUD: marcador fijo arriba a la derecha --- */
+#hud {
+    position: fixed;
+    top: 14px;
+    right: 16px;
+    z-index: 10001;
+    pointer-events: none;
+    background: rgba(17, 24, 39, .88);
+    color: #e5e7eb;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: .4px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+    border: 1px solid rgba(255, 255, 255, .15);
+}
+#hud #puntuacion { color: #7cff6b; }
+#hud #ovnis-destruidos { color: #ffd166; }
+.hud-sep { opacity: .45; margin: 0 6px; }
+
+/* --- 3.2 Capa de ovnis (cubre la pantalla; solo las naves reciben
+        clics, el resto deja pasar el ratón) --- */
+#capa-ovnis {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* --- 3.3 Nave genérica: el vuelo usa transform (no poner escalados
+        aquí; el tamaño lo da cada clase ovni--xx) --- */
+.ovni {
+    position: absolute;
+    width: 96px;
+    height: 56px;
+    pointer-events: auto;          /* se puede clicar */
+    cursor: crosshair;
+    animation: vuelo-der 12s linear forwards;
+}
+.ovni:hover { filter: brightness(1.35) drop-shadow(0 0 8px #fff); }
+
+/* Cuerpo interior con balanceo (independiente del vuelo) */
+.ovni-cuerpo {
+    position: absolute;
+    inset: 0;
+    animation: balanceo 1.4s ease-in-out infinite alternate;
+}
+
+/* Casco (ovalado por defecto) */
+.ovni-casco {
+    position: absolute;
+    left: 50%;
+    bottom: 6px;
+    transform: translateX(-50%);
+    width: 92%;
+    height: 44%;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #eef3f8 0%, #a7b3c1 55%, #5c6773 100%);
+    box-shadow: inset 0 -6px 10px rgba(0, 0, 0, .35), 0 6px 14px rgba(0, 0, 0, .35);
+}
+
+/* Cubo de mando (cúpula) */
+.ovni-domo {
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    transform: translateX(-50%);
+    width: 44%;
+    height: 46%;
+    border-radius: 50% 50% 14% 14%;
+    background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, .95), rgba(120, 220, 255, .8) 45%, rgba(30, 140, 200, .9));
+    box-shadow: inset 0 -4px 8px rgba(0, 0, 0, .3);
+}
+
+/* Tira de luces intermitentes */
+.ovni-luces {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    width: 72%;
+    height: 8px;
+    background: repeating-linear-gradient(90deg, #ffe600 0 9px, transparent 9px 22px);
+    filter: drop-shadow(0 0 6px #ffe600);
+    animation: parpadeo-luces .5s steps(2, end) infinite;
+}
+
+/* Haz tractor opcional (tipos con--haz) */
+.ovni-cuerpo.con-haz::after {
     content: "";
     position: absolute;
     left: 50%;
-    top: 50%;
-    width: 200px;
-    height: 200px;
-    transform: translate(-50%, -55%) scale(0.2);
-    border-radius: 50% 50% 60% 60% / 55% 55% 45% 45%;
-    background: radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.8) 0%, rgba(255,200,80,0.8) 15%, rgba(255,130,0,0.5) 35%, rgba(255,80,0,0.0) 70%);
-    opacity: 0.9;
-    animation: mushroom-cloud 0.9s ease-out forwards;
+    top: 78%;
+    width: 70px;
+    height: 260px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(140, 255, 220, .75), rgba(140, 255, 220, 0));
+    clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%);
+    pointer-events: none;
+    animation: parpadeo-haz 1.2s ease-in-out infinite alternate;
 }
 
-.explosion .particle {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: var(--size);
-    height: var(--size);
-    border-radius: 50%;
-    background: var(--particle-color);
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    animation: particle-flight 0.9s ease-out forwards;
+/* --- 3.4 LOS 12 TIPOS DE OVNIS (colores, formas y tamaños) --- */
+.ovni--plate { width: 96px; height: 56px; }                    /* 1 clásico plateado */
+.ovni--rojo  { width: 90px; height: 54px; }
+.ovni--rojo .ovni-casco { background: linear-gradient(180deg, #ff8a8a 0%, #e23b3b 55%, #7d1414 100%); }
+.ovni--rojo .ovni-domo  { background: radial-gradient(circle at 35% 30%, #fff, #ffd2d2 45%, #c62828); }
+
+.ovni--triangulo { width: 116px; height: 64px; }               /* 2 TR-3B */
+.ovni--triangulo .ovni-casco {
+    border-radius: 0;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    background: linear-gradient(180deg, #3b3f46 0%, #17181c 80%);
+}
+.ovni--triangulo .ovni-domo { display: none; }
+.ovni--triangulo .ovni-luces { background: repeating-linear-gradient(90deg, #7cff6b 0 8px, transparent 8px 26px); filter: drop-shadow(0 0 7px #7cff6b); bottom: 6px; }
+
+.ovni--cubo { width: 74px; height: 74px; }                     /* 3 cubo azul */
+.ovni--cubo .ovni-casco { border-radius: 14px; height: 74%; background: linear-gradient(160deg, #9fc6ff 0%, #3f7bff 55%, #16357d 100%); }
+.ovni--cubo .ovni-domo { width: 34%; bottom: 60px; }
+
+.ovni--anillo { width: 92px; height: 92px; }                   /* 4 anillo verde */
+.ovni--anillo .ovni-casco { border: 14px solid #35e07a; background: transparent; height: 78%; bottom: 2px; box-shadow: 0 0 18px rgba(53, 224, 122, .8), inset 0 0 14px rgba(53, 224, 122, .6); }
+.ovni--anillo .ovni-domo { bottom: 30px; width: 36%; }
+
+.ovni--gota { width: 78px; height: 86px; }                     /* 5 gota morada */
+.ovni--gota .ovni-casco { border-radius: 50% 50% 62% 62% / 72% 72% 40% 40%; height: 74%; bottom: 2px; background: linear-gradient(180deg, #e3b8ff 0%, #9c4dff 55%, #4a1785 100%); }
+.ovni--gota .ovni-domo { bottom: 58px; width: 40%; }
+
+.ovni--fantasma { width: 98px; height: 56px; opacity: .55; filter: blur(1.5px) saturate(.4); } /* 6 fantasma */
+.ovni--fantasma .ovni-casco { background: linear-gradient(180deg, #ffffff 0%, #cfd8e3 100%); }
+.ovni--fantasma:hover { filter: blur(0) saturate(1) brightness(1.3); }
+
+.ovni--dorado { width: 70px; height: 40px; }                   /* 7 dorado rápido */
+.ovni--dorado .ovni-casco { background: linear-gradient(180deg, #fff3b0 0%, #ffd23f 55%, #a3750a 100%); box-shadow: inset 0 -5px 8px rgba(0,0,0,.3), 0 0 16px rgba(255, 210, 63, .9); }
+.ovni--dorado .ovni-domo { bottom: 24px; height: 42%; background: radial-gradient(circle at 35% 30%, #fff, #ffe9a1 45%, #f5a623); }
+.ovni--dorado .ovni-luces { background: repeating-linear-gradient(90deg, #fff 0 7px, transparent 7px 18px); filter: drop-shadow(0 0 6px #fff); }
+
+.ovni--doble { width: 104px; height: 82px; }                   /* 8 doble casco */
+.ovni--doble .ovni-casco { height: 40%; bottom: 4px; }
+.ovni--doble .ovni-domo { bottom: 34px; width: 66%; height: 44%; background: radial-gradient(circle at 35% 30%, #fff, #b9d4ff 45%, #2f6fed); }
+
+.ovni--nodriza { width: 164px; height: 92px; }                 /* 9 nodriza gigante */
+.ovni--nodriza .ovni-casco { background: linear-gradient(180deg, #cdd6c2 0%, #7f8f6a 55%, #38421f 100%); height: 46%; }
+.ovni--nodriza .ovni-domo { width: 52%; height: 50%; bottom: 44px; }
+.ovni--nodriza .ovni-luces { background: repeating-linear-gradient(90deg, #ff9f1c 0 10px, transparent 10px 24px); filter: drop-shadow(0 0 7px #ff9f1c); }
+
+.ovni--haz { width: 100px; height: 58px; }                     /* 10 con haz tractor */
+.ovni--haz .ovni-casco { background: linear-gradient(180deg, #c9fff4 0%, #2ee6c5 55%, #0c6b5a 100%); }
+
+.ovni--picudo { width: 104px; height: 58px; }                  /* 11 naranja picudo */
+.ovni--picudo .ovni-casco { border-radius: 0; clip-path: polygon(0 60%, 12% 0, 28% 55%, 50% 0, 72% 55%, 88% 0, 100% 60%, 78% 100%, 22% 100%); background: linear-gradient(180deg, #ffd08a 0%, #ff7a1a 55%, #8a3300 100%); }
+.ovni--picudo .ovni-domo { bottom: 30px; }
+
+.ovni--bicho { width: 86px; height: 66px; }                    /* 12 bicho rosa */
+.ovni--bicho .ovni-casco { border-radius: 46% 54% 40% 60% / 60% 55% 45% 40%; background: linear-gradient(160deg, #ffc2e2 0%, #ff5fa2 55%, #8e0f4a 100%); }
+.ovni--bicho .ovni-domo { background: radial-gradient(circle at 35% 30%, #fff, #ffd9ec 45%, #ff2d87); }
+
+/* --- 3.5 PUNTOS: el número sale, CRECE y desaparece --- */
+.puntos {
+    position: fixed;
+    z-index: 10002;
+    pointer-events: none;
+    font-weight: 900;
+    font-size: 34px;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 16px currentColor, 0 3px 6px rgba(0, 0, 0, .5);
+    animation: puntos-crecer 1.1s cubic-bezier(.2, .9, .3, 1.2) forwards;
 }
 
-@keyframes particle-flight {
-    0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2);
-    }
+/* --- 3.6 Aviso del efecto de clic (esquina inferior izquierda) --- */
+#aviso-efecto {
+    position: fixed;
+    left: 14px;
+    bottom: 14px;
+    z-index: 10001;
+    pointer-events: none;
+    background: rgba(17, 24, 39, .85);
+    color: #9fd0ff;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 7px 13px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    opacity: 0;
+}
+#aviso-efecto.visible { animation: aviso-efecto 2.3s ease forwards; }
+
+/* ================================================================
+   KEYFRAMES DEL JUEGO
+   ================================================================ */
+
+/* Vuelo de derecha a izquierda / de izquierda a derecha */
+@keyframes vuelo-der {
+    from { transform: translateX(-180px); }
+    to   { transform: translateX(calc(100vw + 180px)); }
+}
+@keyframes vuelo-izq {
+    from { transform: translateX(calc(100vw + 180px)) scaleX(-1); }
+    to   { transform: translateX(-180px) scaleX(-1); }
 }
 
-@keyframes bloom {
-    0% {
-        opacity: 0;
-        transform: scale(0.3);
-    }
-    15% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: scale(1.8);
-    }
+/* Balanceo de la nave */
+@keyframes balanceo {
+    from { transform: translateY(-7px) rotate(-2.5deg); }
+    to   { transform: translateY(7px) rotate(2.5deg); }
 }
 
-@keyframes mushroom-cloud {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -55%) scale(0.2);
-    }
-    20% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -80%) scale(1.8);
-    }
+/* Luces intermitentes */
+@keyframes parpadeo-luces {
+    50% { opacity: .2; }
 }
 
-@keyframes flash-burst {
-    0% {
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+/* Haz tractor tembloroso */
+@keyframes parpadeo-haz {
+    from { opacity: .55; transform: translateX(-50%) scaleX(1); }
+    to   { opacity: .95; transform: translateX(-50%) scaleX(1.12); }
+}
+
+/* Puntuación: aparece, crece mucho y se desvanece */
+@keyframes puntos-crecer {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(.3) rotate(-8deg); }
+    18%  { opacity: 1; transform: translate(-50%, -50%) scale(1.2) rotate(3deg); }
+    35%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -70%) scale(2.9) rotate(0deg); }
+}
+
+/* Aviso de efecto activo */
+@keyframes aviso-efecto {
+    0%   { opacity: 0; transform: translateY(10px); }
+    12%  { opacity: 1; transform: translateY(0); }
+    78%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
 }

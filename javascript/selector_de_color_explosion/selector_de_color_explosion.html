@@ -3,22 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selector de color</title>
+    <title>Selector de color - Explosión + Ovnis Espaciales</title>
     <link rel="stylesheet" href="style_explosion.css">
 </head>
 <body>
 
-    <!-- Crea una web que permita al usuario cambiar de color de fondo y el color de texto del texto de un contenedor haciendo click sobre diferetes cajas de colores. La página debe incluir varias cajas de colores, rojo, verde, azul, amarillo y morado y un contenedor con varios párrafos de texto. Al hacer click sobre una de las cajas el fondo el fondo del contenedor debe debe cambiar al color selecccionado, el color del texto también debe cambiar para mantener una buena visibilidad. -->
+    <!-- ============================================================
+         FONDO ESPACIAL: nebulosa Ojo de Gato + estrellas + meteoritos
+         ============================================================ -->
+    <div id="espacio-fondo" aria-hidden="true">
+        <div class="nebulosa ojo-de-gato"></div>
+        <div class="estrellas capa-1"></div>
+        <div class="estrellas capa-2"></div>
+        <div class="estrellas capa-3"></div>
+        <div class="meteoritos"></div>
+    </div>
+
+    <!-- ============================================================
+         EJERCICIO ORIGINAL + AMPLIACIONES:
+         · 104 efectos al click en cualquier punto
+         · 12 efectos al pulsar cajas de color (bucle)
+         · 50 tipos de ovni (cada 10 s, destruibles, puntos que crecen)
+         · 12 colores con candado: se desbloquean a 200, 400, 800... pts (x2)
+         ============================================================ -->
 
     <h1>Selecciona un color para el contenedor</h1>
 
-<!-- Contenedor de las cajas de colores , el atributo data.gbcolor (y data-textcolor) almacenar información adicional sobre cada caja de color, sin necesidad de escirbir código extra en el css a JavaScript -->
-    <div class="color-picker">
-        <div class="color-box" data-bgcolor="red" data-textcolor="white"></div>
-        <div class="color-box" data-bgcolor="green" data-textcolor="white"></div>
-        <div class="color-box" data-bgcolor="blue" data-textcolor="white"></div>
-        <div class="color-box" data-bgcolor="yellow" data-textcolor="black"></div>
-        <div class="color-box" data-bgcolor="purple" data-textcolor="white"></div>
+    <!-- ============================================================
+         GRID DE COLORES 3x4 (12 colores)
+         Cada caja tiene un candado visual que desaparece al desbloquear.
+         data-lock-cost = puntos necesarios para desbloquear.
+         El primero (red) empieza desbloqueado (cost 0).
+         ============================================================ -->
+    <div class="color-picker" id="color-picker">
+        <!-- Fila 1 -->
+        <div class="color-wrap" data-bgcolor="red" data-textcolor="white" data-lock-cost="0">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔓</div>
+            <span class="coste">GRATIS</span>
+        </div>
+        <div class="color-wrap" data-bgcolor="green" data-textcolor="white" data-lock-cost="200">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔒</div>
+            <span class="coste">200</span>
+        </div>
+        <div class="color-wrap" data-bgcolor="blue" data-textcolor="white" data-lock-cost="400">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔒</div>
+            <span class="coste">400</span>
+        </div>
+        <div class="color-wrap" data-bgcolor="yellow" data-textcolor="black" data-lock-cost="800">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔒</div>
+            <span class="coste">800</span>
+        </div>
+
+        <!-- Fila 2 -->
+        <div class="color-wrap" data-bgcolor="purple" data-textcolor="white" data-lock-cost="1600">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔒</div>
+            <span class="coste">1600</span>
+        </div>
+        <div class="color-wrap" data-bgcolor="orange" data-textcolor="white" data-lock-cost="3200">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔒</div>
+            <span class="coste">3200</span>
+        </div>
+        <div class="color-wrap" data-bgcolor="cyan" data-textcolor="black" data-lock-cost="6400">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔒</div>
+            <span class="coste">6400</span>
+        </div>
+        <div class="color-wrap" data-bgcolor="pink" data-textcolor="black" data-lock-cost="12800">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔒</div>
+            <span class="coste">12800</span>
+        </div>
+
+        <!-- Fila 3 -->
+        <div class="color-wrap" data-bgcolor="lime" data-textcolor="black" data-lock-cost="25600">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔒</div>
+            <span class="coste">25600</span>
+        </div>
+        <div class="color-wrap" data-bgcolor="magenta" data-textcolor="white" data-lock-cost="51200">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔒</div>
+            <span class="coste">51200</span>
+        </div>
+        <div class="color-wrap" data-bgcolor="brown" data-textcolor="white" data-lock-cost="102400">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔒</div>
+            <span class="coste">102400</span>
+        </div>
+        <div class="color-wrap" data-bgcolor="teal" data-textcolor="white" data-lock-cost="204800">
+            <div class="color-box"></div>
+            <div class="candado" aria-hidden="true">🔒</div>
+            <span class="coste">204800</span>
+        </div>
     </div>
 
     <!-- Contenedor de texto que cambiará -->
@@ -27,6 +109,21 @@
         <p>Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
         <p>INam nec sapien ut libero malesuada feugiat.</p>
     </div>
+
+    <!-- ============ ELEMENTOS NUEVOS ============ -->
+
+    <!-- HUD: puntuación y ovnis destruidos -->
+    <div id="hud" aria-hidden="true">
+        🏆 Puntos: <span id="puntuacion">0</span>
+        <span class="hud-sep">·</span>
+        💥 Destruidos: <span id="ovnis-destruidos">0</span>
+    </div>
+
+    <!-- Capa de ovnis -->
+    <div id="capa-ovnis" aria-hidden="true"></div>
+
+    <!-- Aviso de efecto de clic -->
+    <div id="aviso-efecto" aria-hidden="true"></div>
 
     <script src="script_explosion.js"></script>
 
