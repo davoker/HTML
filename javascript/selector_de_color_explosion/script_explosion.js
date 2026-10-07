@@ -1,23 +1,52 @@
 /* ================================================================
-   SELECTOR DE COLOR - EXPLOSIÓN + JUEGO DE OVNIS
+   SELECTOR DE COLOR - EXPLOSIÓN + OVNIS ESPACIALES
    ----------------------------------------------------------------
    ESTRUCTURA DEL ARCHIVO (por bloques):
-     BLOQUE 1 → Selector de color (ejercicio original)
-     BLOQUE 2 → Motor de efectos: familias y lanzamiento
-     BLOQUE 3 → Los 104 EFECTOS DE CLIC (click en cualquier punto)
-     BLOQUE 4 → Los 12 EFECTOS DE BOTÓN (cada pulsación de caja)
-     BLOQUE 5 → Clícula global: lanza un efecto aleatorio
-     BLOQUE 6 → JUEGO DE OVNIS: 13 naves cada 10 s + puntuación
+     BLOQUE 1 → Fondo espacial (meteoritos)
+     BLOQUE 2 → Selector de color + sistema de candados
+     BLOQUE 3 → Motor de efectos: familias y lanzamiento
+     BLOQUE 4 → Los 104 EFECTOS DE CLIC (click en cualquier punto)
+     BLOQUE 5 → Los 12 EFECTOS DE BOTÓN (cada pulsación de caja)
+     BLOQUE 6 → Clícula global: lanza un efecto aleatorio
+     BLOQUE 7 → JUEGO DE OVNIS: 50 naves cada 10 s + puntuación
    No usa ninguna librería: es JavaScript y CSS puros.
    ================================================================ */
 
 /* ================================================================
-   BLOQUE 1 - SELECTOR DE COLOR (ejercicio original)
+   BLOQUE 1 - FONDO ESPACIAL: meteoritos que cruzan la pantalla
    ================================================================ */
 
-const colorBoxes = document.querySelectorAll('.color-box');
+(function crearMeteoritos() {
+    const capa = document.querySelector('.meteoritos');
+    if (!capa) return;
+
+    /* Crea 6 meteoritos con posiciones y retardos aleatorios */
+    for (let i = 0; i < 6; i++) {
+        const m = document.createElement('div');
+        m.className = 'meteorito';
+        m.style.top = (5 + Math.random() * 80) + '%';
+        m.style.left = (20 + Math.random() * 75) + '%';
+        m.style.animationDelay = (Math.random() * 15) + 's';
+        m.style.animationDuration = (6 + Math.random() * 6) + 's';
+        capa.appendChild(m);
+    }
+})();
+
+/* ================================================================
+   BLOQUE 2 - SELECTOR DE COLOR + SISTEMA DE CANDADOS
+   · 12 colores en grid 3x4.
+   · Cada color tiene un candado visual con su coste en puntos.
+   · El primero (rojo) empieza desbloqueado (coste 0).
+   · Al alcanzar los puntos necesarios, el candado se abre solo.
+   · Los costes se duplican: 200, 400, 800, 1600, 3200...
+   ================================================================ */
+
+const colorWraps = document.querySelectorAll('.color-wrap:not(.vacio)');
 const contenedorTexto = document.getElementById('contenedor-texto');
 const textos = contenedorTexto.querySelectorAll('p');
+
+/* Puntuación actual (la actualiza el juego de ovnis) */
+let puntuacionActual = 0;
 
 /* Devuelve un color de texto visible para cada fondo de color */
 function elegirColorTexto(color) {
@@ -27,48 +56,83 @@ function elegirColorTexto(color) {
         blue: '#ffffff',
         yellow: '#111111',
         orange: '#111111',
-        purple: '#ffffff'
+        purple: '#ffffff',
+        cyan: '#111111',
+        pink: '#111111',
+        lime: '#111111',
+        magenta: '#ffffff',
+        brown: '#ffffff',
+        teal: '#ffffff'
     };
 
     return colores[color] || '#111111';
 }
 
-/* Explosión "original" del ejercicio: fogonazo + nube hongo +
-   18 partículas. Ahora recibe las COORDENADAS (x, y) para poder
-   reutilizarse en las cajas y en los ovnis destruidos. */
-function crearExplosion(color, x, y) {
-    const explosion = document.createElement('div');
-    explosion.className = 'explosion';
-    explosion.style.setProperty('--burst-color', color);
+/* Actualiza el estado visual de todos los candados según la
+   puntuación actual: abre los que ya se pueden pagar */
+function actualizarCandados() {
+    colorWraps.forEach((wrap) => {
+        const coste = Number(wrap.dataset.lockCost) || 0;
+        const candado = wrap.querySelector('.candado');
+        const costeEl = wrap.querySelector('.coste');
 
-    explosion.style.left = `${x}px`;
-    explosion.style.top = `${y}px`;
-
-    const particulas = 18;
-
-    for (let i = 0; i < particulas; i++) {
-        const particula = document.createElement('span');
-        particula.className = 'particle';
-
-        const angulo = (Math.PI * 2 * i) / particulas;
-        const distancia = 35 + Math.random() * 65;
-        const px = Math.cos(angulo) * distancia;
-        const py = Math.sin(angulo) * distancia;
-
-        particula.style.setProperty('--dx', `${px}px`);
-        particula.style.setProperty('--dy', `${py}px`);
-        particula.style.setProperty('--size', `${5 + Math.random() * 8}px`);
-        particula.style.setProperty('--particle-color', color);
-
-        explosion.appendChild(particula);
-    }
-
-    document.body.appendChild(explosion);
-    setTimeout(() => explosion.remove(), 900);
+        if (puntuacionActual >= coste) {
+            /* Color desbloqueado: quitar candado y coste */
+            wrap.classList.remove('bloqueado');
+            if (candado) candado.classList.add('desbloqueado');
+            if (costeEl) costeEl.classList.add('desbloqueado');
+        } else {
+            /* Color bloqueado: mostrar candado y coste */
+            wrap.classList.add('bloqueado');
+            if (candado) candado.classList.remove('desbloqueado');
+            if (costeEl) costeEl.classList.remove('desbloqueado');
+        }
+    });
 }
 
+/* Al pulsar una caja: si está bloqueada no hace nada; si no,
+   cambia el color del contenedor y lanza su efecto de botón */
+colorWraps.forEach((wrap) => {
+    wrap.addEventListener('click', () => {
+        const coste = Number(wrap.dataset.lockCost) || 0;
+
+        /* ¿Bloqueado? No se puede usar todavía */
+        if (puntuacionActual < coste) {
+            /* Pequeño "shake" de rechazo */
+            wrap.style.transform = 'translateX(-4px)';
+            setTimeout(() => { wrap.style.transform = ''; }, 100);
+            return;
+        }
+
+        const bgColor = wrap.dataset.bgcolor;
+        const textColor = elegirColorTexto(bgColor);
+
+        colorWraps.forEach((item) => item.classList.remove('selected'));
+        wrap.classList.add('selected');
+
+        contenedorTexto.style.backgroundColor = bgColor;
+        textos.forEach((parrafo) => {
+            parrafo.style.color = textColor;
+        });
+
+        /* --- Efecto de botón (12 distintos en bucle) --- */
+        const def = EFECTOS_BOTON[indiceEfectoBoton];
+        indiceEfectoBoton = (indiceEfectoBoton + 1) % EFECTOS_BOTON.length;
+
+        const rect = wrap.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+
+        if (def.fam === 'original') {
+            crearExplosion(bgColor, cx, cy);
+        } else {
+            lanzarEfecto(def, cx, cy, bgColor);
+        }
+    });
+});
+
 /* ================================================================
-   BLOQUE 2 - MOTOR DE EFECTOS
+   BLOQUE 3 - MOTOR DE EFECTOS
    Un efecto es un objeto { nom, fam, ...parámetros }.
    "fam" (familia) decide QUÉ renderizador lo dibuja y qué keyframes
    de CSS usa. Así 104 efectos comparten solo 13 familias.
@@ -92,7 +156,7 @@ function azar(min, max) {
 }
 
 /* ---------------------------------------------------------------
-   2.1 RENDERIZADORES (uno por familia)
+   3.1 RENDERIZADORES (uno por familia)
    Cada uno recibe: el contenedor, la definición y el color extra.
    --------------------------------------------------------------- */
 const RENDER = {
@@ -107,11 +171,9 @@ const RENDER = {
             let dx;
             let dy;
             if (d.grav) {
-                // Con gravedad: deriva lateral y caída hacia abajo
                 dx = azar(-0.6, 0.6) * (d.dist || 120);
                 dy = azar(60, 150);
             } else {
-                // Radial puro
                 const ang = (Math.PI * 2 * i) / n + azar(-0.25, 0.25);
                 const dist = (d.dist || 120) * azar(0.5, 1.3);
                 dx = Math.cos(ang) * dist;
@@ -179,7 +241,6 @@ const RENDER = {
             let dx = 0;
             let dy = 0;
             if (d.radiante) {
-                // Las palabras salen desplazadas alrededor del centro
                 const ang = (Math.PI * 2 * i) / palabras.length;
                 const dist = azar(70, 120);
                 dx = (Math.cos(ang) * dist).toFixed(0);
@@ -350,7 +411,7 @@ const RENDER = {
 };
 
 /* ---------------------------------------------------------------
-   2.2 LANZAMIENTO: crea el contenedor, lo pinta en (x, y) y lo
+   3.2 LANZAMIENTO: crea el contenedor, lo pinta en (x, y) y lo
    borra solo cuando la animación ha terminado.
    --------------------------------------------------------------- */
 function lanzarEfecto(def, x, y, extraColor) {
@@ -376,9 +437,9 @@ function lanzarEfecto(def, x, y, extraColor) {
 }
 
 /* ================================================================
-   BLOQUE 3 - LOS 104 EFECTOS DE CLIC
+   BLOQUE 4 - LOS 104 EFECTOS DE CLIC
    Se lanzan al azar cada vez que se hace click en CUALQUIER punto
-   de la página (el BLOQUE 5 se encarga de eso).
+   de la página (el BLOQUE 6 se encarga de eso).
    Cada efecto: nombre propio + familia + parámetros.
    ================================================================ */
 
@@ -518,7 +579,7 @@ const EFECTOS_CLIC = [
 /* TOTAL: 104 efectos de clic distintos (12+8+13+8+8+6+8+8+6+6+8+8+5) */
 
 /* ================================================================
-   BLOQUE 4 - LOS 12 EFECTOS DE BOTÓN
+   BLOQUE 5 - LOS 12 EFECTOS DE BOTÓN
    Cada vez que se pulsa una caja de color se muestra UN efecto y
    el contador avanza: así dos pulsaciones seguidas nunca repiten
    el mismo (recorre los 12 en bucle).
@@ -543,39 +604,8 @@ const EFECTOS_BOTON = [
 /* Índice del próximo efecto de botón (avanza con cada pulsación) */
 let indiceEfectoBoton = 0;
 
-/* Al pulsar una caja: cambia el color del contenedor y lanza SU
-   efecto de botón (en el centro de la caja) */
-colorBoxes.forEach((box) => {
-    box.addEventListener('click', () => {
-        const bgColor = box.dataset.bgcolor;
-        const textColor = elegirColorTexto(bgColor);
-
-        colorBoxes.forEach((item) => item.classList.remove('selected'));
-        box.classList.add('selected');
-
-        contenedorTexto.style.backgroundColor = bgColor;
-        textos.forEach((parrafo) => {
-            parrafo.style.color = textColor;
-        });
-
-        /* --- Efecto de botón (12 distintos en bucle) --- */
-        const def = EFECTOS_BOTON[indiceEfectoBoton];
-        indiceEfectoBoton = (indiceEfectoBoton + 1) % EFECTOS_BOTON.length;
-
-        const rect = box.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-
-        if (def.fam === 'original') {
-            crearExplosion(bgColor, cx, cy);
-        } else {
-            lanzarEfecto(def, cx, cy, bgColor);
-        }
-    });
-});
-
 /* ================================================================
-   BLOQUE 5 - CLIC GLOBAL
+   BLOQUE 6 - CLIC GLOBAL
    Un click en CUALQUIER punto de la página lanza un efecto al azar
    de los 104 (nunca repite el inmediatamente anterior).
    ================================================================ */
@@ -604,13 +634,14 @@ document.addEventListener('click', (e) => {
 });
 
 /* ================================================================
-   BLOQUE 6 - JUEGO DE OVNIS
-   · 13 naves distintas (forma, color, tamaño, velocidad y puntos).
+   BLOQUE 7 - JUEGO DE OVNIS
+   · 50 naves distintas (forma, color, tamaño, velocidad y puntos).
    · Cada 10 segundos sale una "ola" de 1 a 3 ovnis (el primero,
      al cargar la página, aparece ya).
    · Al clicar un ovni: EXPLOTA, sube la puntuación con un número
      que CRECE hasta desaparecer, y se actualiza el marcador.
    · Si no lo alcanzas, vuela fuera de la pantalla y desaparece.
+   · Al ganar puntos se desbloquean colores (candados).
    ================================================================ */
 
 const OVNIS = [
@@ -626,14 +657,50 @@ const OVNIS = [
     { cls: 'nodriza', nom: 'Nave nodriza', puntos: 500, vel: 20, color: '#cdd6c2' },
     { cls: 'haz', nom: 'Extractor con haz', puntos: 180, vel: 10, color: '#2ee6c5', haz: true },
     { cls: 'picudo', nom: 'Picudo naranja', puntos: 130, vel: 11, color: '#ff7a1a' },
-    { cls: 'bicho', nom: 'Bicho rosa', puntos: 160, vel: 9, color: '#ff5fa2' }
+    { cls: 'bicho', nom: 'Bicho rosa', puntos: 160, vel: 9, color: '#ff5fa2' },
+    { cls: 'diamante', nom: 'Diamante cian', puntos: 110, vel: 12, color: '#06b6d4' },
+    { cls: 'hexagono', nom: 'Hexágono lima', puntos: 140, vel: 10, color: '#84cc16' },
+    { cls: 'estrella', nom: 'Estrella amarilla', puntos: 170, vel: 9, color: '#eab308' },
+    { cls: 'luna', nom: 'Luna creciente', puntos: 220, vel: 8, color: '#fde047' },
+    { cls: 'cometa', nom: 'Cometa violeta', puntos: 260, vel: 7, color: '#a855f7' },
+    { cls: 'morado', nom: 'OVNI morado', puntos: 130, vel: 11, color: '#7c3aed' },
+    { cls: 'turquesa', nom: 'OVNI turquesa', puntos: 120, vel: 12, color: '#14b8a6' },
+    { cls: 'coral', nom: 'OVNI coral', puntos: 140, vel: 10, color: '#f43f5e' },
+    { cls: 'indigo', nom: 'OVNI índigo', puntos: 150, vel: 10, color: '#6366f1' },
+    { cls: 'ambar', nom: 'OVNI ámbar', puntos: 130, vel: 11, color: '#f59e0b' },
+    { cls: 'esmeralda', nom: 'OVNI esmeralda', puntos: 160, vel: 9, color: '#10b981' },
+    { cls: 'zafiro', nom: 'OVNI zafiro', puntos: 140, vel: 10, color: '#3b82f6' },
+    { cls: 'rubi', nom: 'OVNI rubí', puntos: 150, vel: 10, color: '#ef4444' },
+    { cls: 'topacio', nom: 'OVNI topacio', puntos: 130, vel: 11, color: '#f97316' },
+    { cls: 'jade', nom: 'OVNI jade', puntos: 140, vel: 10, color: '#22c55e' },
+    { cls: 'amatista', nom: 'OVNI amatista', puntos: 150, vel: 10, color: '#9333ea' },
+    { cls: 'perla', nom: 'OVNI perla', puntos: 120, vel: 12, color: '#cbd5e1' },
+    { cls: 'carbon', nom: 'OVNI carbón', puntos: 180, vel: 9, color: '#525252' },
+    { cls: 'hielo', nom: 'OVNI hielo', puntos: 140, vel: 10, color: '#7dd3fc' },
+    { cls: 'lava', nom: 'OVNI lava', puntos: 200, vel: 8, color: '#dc2626' },
+    { cls: 'bosque', nom: 'OVNI bosque', puntos: 150, vel: 10, color: '#16a34a' },
+    { cls: 'oceano', nom: 'OVNI océano', puntos: 140, vel: 10, color: '#0891b2' },
+    { cls: 'atardecer', nom: 'OVNI atardecer', puntos: 160, vel: 9, color: '#f97316' },
+    { cls: 'medianoche', nom: 'OVNI medianoche', puntos: 170, vel: 9, color: '#312e81' },
+    { cls: 'aurora', nom: 'OVNI aurora', puntos: 190, vel: 8, color: '#34d399' },
+    { cls: 'galaxia', nom: 'OVNI galaxia', puntos: 210, vel: 8, color: '#a855f7' },
+    { cls: 'nebulosa', nom: 'OVNI nebulosa', puntos: 200, vel: 8, color: '#d946ef' },
+    { cls: 'pulsar', nom: 'OVNI pulsar', puntos: 230, vel: 7, color: '#eab308' },
+    { cls: 'cuasar', nom: 'OVNI cuásar', puntos: 220, vel: 7, color: '#0ea5e9' },
+    { cls: 'magnetar', nom: 'OVNI magnetar', puntos: 240, vel: 7, color: '#e11d48' },
+    { cls: 'enana', nom: 'OVNI enana', puntos: 100, vel: 13, color: '#9ca3af' },
+    { cls: 'gigante', nom: 'OVNI gigante', puntos: 350, vel: 18, color: '#475569' },
+    { cls: 'mini', nom: 'OVNI mini', puntos: 80, vel: 14, color: '#f59e0b' },
+    { cls: 'delta', nom: 'OVNI delta', puntos: 160, vel: 9, color: '#14b8a6' },
+    { cls: 'omega', nom: 'OVNI omega', puntos: 180, vel: 9, color: '#ec4899' },
+    { cls: 'sigma', nom: 'OVNI sigma', puntos: 150, vel: 10, color: '#8b5cf6' },
+    { cls: 'final', nom: 'OVNI final', puntos: 400, vel: 16, color: '#f59e0b' }
 ];
 
 const capaOvnis = document.getElementById('capa-ovnis');
 const puntuacionEl = document.getElementById('puntuacion');
 const destruidosEl = document.getElementById('ovnis-destruidos');
 
-let puntuacion = 0;
 let ovnisDestruidos = 0;
 
 /* Crea una nave al azar y la lanza hacia un lado u otro */
@@ -707,10 +774,13 @@ capaOvnis.addEventListener('click', (e) => {
     crearExplosion(nave.dataset.color || '#ffffff', x, y);
     sacarPuntos(puntos, x, y, nave.dataset.color);
 
-    puntuacion += puntos;
+    puntuacionActual += puntos;
     ovnisDestruidos++;
-    puntuacionEl.textContent = puntuacion;
+    puntuacionEl.textContent = puntuacionActual;
     destruidosEl.textContent = ovnisDestruidos;
+
+    /* ¿Se desbloquea algún color nuevo? */
+    actualizarCandados();
 
     nave.remove();
 });
@@ -718,3 +788,6 @@ capaOvnis.addEventListener('click', (e) => {
 /* Primer vuelo al cargar + una ola cada 10 segundos */
 olaDeOvnis();
 setInterval(olaDeOvnis, 10000);
+
+/* Estado inicial de los candados */
+actualizarCandados();
