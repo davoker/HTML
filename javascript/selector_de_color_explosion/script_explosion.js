@@ -436,6 +436,23 @@ function lanzarEfecto(def, x, y, extraColor) {
     }, dur + 500);
 }
 
+/* ---------------------------------------------------------------
+    3.3 CREAR EXPLOSIÓN: atajo usado al destruir un OVNI y por el
+    efecto "original" de los botones. Combina una onda expansiva
+    doble + chispas con gravedad, todo con el color recibido.
+    (Si no existiera, el clic del OVNI lanzaría un ReferenceError y
+    la nave NO llegaría a borrarse: el bug de "no se destruyen").
+    --------------------------------------------------------------- */
+function crearExplosion(color, x, y) {
+    const c = color || '#ffffff';
+
+    /* Onda expansiva (anillos) en el punto exacto */
+    lanzarEfecto({ nom: 'Explosión anillo', fam: 'anillo', cols: [c, '#ffffff'], n: 2, size: 210, grosor: 8, dur: 850 }, x, y, c);
+
+    /* Chispas radiales con gravedad cayendo */
+    lanzarEfecto({ nom: 'Explosión chispas', fam: 'chispas', cols: [c, '#ffffff', '#ffd60a'], n: 28, dist: 150, dur: 900, form: 'circulo', grav: true }, x, y, c);
+}
+
 /* ================================================================
    BLOQUE 4 - LOS 104 EFECTOS DE CLIC
    Se lanzan al azar cada vez que se hace click en CUALQUIER punto
