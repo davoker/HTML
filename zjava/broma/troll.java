@@ -1,4 +1,4 @@
-package zjava;
+package broma;
 import javax.swing.JFrame;
 
 public class troll extends JFrame{

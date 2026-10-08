@@ -1,4 +1,3 @@
-package zjava;
 /* Enunciado: Crea un programa que muestre el mensaje "Hola, mundo." */
 
 public class HolaMundo {
