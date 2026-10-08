@@ -1,3 +1,4 @@
+package modulo1;
 /* Datos de un producto. Crea variables para guardar:
 Nombre del producto.
 Precio.

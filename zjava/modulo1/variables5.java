@@ -1,3 +1,4 @@
+package modulo1;
 /* Cambio de valor de una variable. Crea una variable llamada puntos con un valor inicial de 10.
 Muestra el valor por pantalla.
 Después cambiar el valor de la variable a 20 y vuelve a mostrarlo en pantalla. */

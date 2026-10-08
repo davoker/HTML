@@ -1,3 +1,4 @@
+package modulo1;
 /* Crea una variable para: nombre del alumno, Nota del examen, Número de faltas, Si has aprobado o suspendido, muestra los valores por pantalla */
 public class variables3 { // Declara la clase; su nombre coincide con el archivo.
 

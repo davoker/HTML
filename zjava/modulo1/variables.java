@@ -1,3 +1,4 @@
+package modulo1;
 
 public class variables { // Declara la clase; su nombre coincide con el archivo.
     public static void main(String[] args) {

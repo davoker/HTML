@@ -1,3 +1,4 @@
+package modulo1;
 public class variables4 { // El nombre de la clase debe coincidir con el del archivo.
 
     public static void main(String[] args) { // Punto de entrada: aquí comienza el programa.
