@@ -1,3 +1,4 @@
+
 public class variables { // Declara la clase; su nombre coincide con el archivo.
     public static void main(String[] args) {
         int edad = 45; // int guarda un número entero.

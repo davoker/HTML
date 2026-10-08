@@ -4,7 +4,7 @@ Precio.
 Utilidades disponibles.
 Si está en oferta.
 Muestra toda la información en System.out.println() */
-public class variables2 {
+public class variables2oferta {
 
     public static void main(String[] args) {
         String nombre = "Juego de ajedrez";
@@ -14,7 +14,12 @@ public class variables2 {
         
         
         System.out.println("Nombre: " + nombre);
-        System.out.println("Precio: " + precio);
+        if (oferta) {
+            double precioOferta = Math.round(precio * 0.75 * 100) / 100.0;
+            System.out.println("Precio en oferta: " + precioOferta);
+        } else {
+            System.out.println("Precio normal: " + precio);
+        }
         System.out.println("Unidades: " + unidades);
         System.out.println("Oferta: " + (oferta ? "Si" : "No"));
     }
