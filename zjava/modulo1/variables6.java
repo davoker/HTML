@@ -12,6 +12,11 @@ public class variables6 { // Declara la clase; su nombre coincide con el archivo
         int unidades = 5; // int guarda un número entero.
         double total = precio * unidades; // double permite multiplicar.
 
-        System.out.println("El precio total es " + total); // El total se muestra en la línea siguiente.
+
+        System.out.println("Cantidad: " + unidades); // También se pueden mostrar números.
+        System.out.println("Precio: " + precio); // El precio se muestra en otra línea.
+        System.out.println("Total: " + total); // El total se muestra en otra línea.
+        // System.out.println("El precio total es " + total); // Esta línea sustituye las 3 anteriores, muestra el total con las unidades ya sumadas directamente, en la terminal veríamos solo "El precio total es 199.75".
+
     }
 }
