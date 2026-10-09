@@ -14,21 +14,21 @@ Precio, producto, cantidad de producto, importe inicial de la compra, impor de d
 public class variables7 {
 
     public static void main(String[] args) {
-        double precio = 99.95; // double guarda números con decimales.
-        int unidades = 7; // int guarda un número entero.
-        double total = precio * unidades; // double permite multiplicar.
-        double descuento = total * 0.10; // double permite multiplicar.
-        double descuentoTotal = total - descuento; // double permite restar.
-        double iva = descuentoTotal * 0.21; // double permite multiplicar.
-        double precioFinal = descuentoTotal - iva; // double permite restar.
+        double precio = 99.95; // Precio unitario del producto, con decimales.
+        int unidades = 7; // Número de productos comprados.
+        double total = precio * unidades; // Calcula el importe inicial sin descuento.
+        double descuento = total * 0.10; // Calcula el 10% de descuento sobre el total.
+        double precioConDescuento = total - descuento; // Resta el descuento al importe inicial.
+        double iva = precioConDescuento * 0.21; // Calcula el 21% de IVA sobre el precio ya descontado.
+        double precioFinal = precioConDescuento + iva; // Suma el IVA al precio con descuento.
 
-        System.out.println("Precio: " + precio); // Muestra el precio.
-        System.out.println("Unidades: " + unidades); // Muestra cuántas unidades hay.
-        System.out.println("Total: " + total); // El total se muestra en otra línea.
-        System.out.println("Descuento: " + descuento); // El descuento se muestra en otra línea.
-        System.out.println("Descuento total: " + descuentoTotal); // El descuento total se muestra en otra línea.
-        System.out.println("IVA: " + iva); // El IVA se muestra en otra línea.
-        System.out.println("Precio final: " + precioFinal); // El precio final se muestra en otra línea.
+        System.out.println("Precio: " + precio); // Muestra el precio de cada unidad.
+        System.out.println("Unidades: " + unidades); // Muestra cuántas unidades se compran.
+        System.out.println("Total: " + total); // Muestra el importe inicial antes del descuento.
+        System.out.println("Descuento: " + descuento); // Muestra cuánto dinero se descuenta.
+        System.out.println("Precio con descuento: " + precioConDescuento); // Muestra el total tras aplicar el descuento.
+        System.out.println("IVA: " + iva); // Muestra el importe del IVA añadido.
+        System.out.println("Precio final: " + precioFinal); // Muestra el coste final a pagar.
     }
     
 }
